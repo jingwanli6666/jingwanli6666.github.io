@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/25/单例/" itemprop="url">
-                  单例
+                <a class="post-title-link" href="/2016/10/25/iOS开发之单例/" itemprop="url">
+                  Unbenannt
                 </a>
               
             
@@ -254,7 +254,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T22:37:42+08:00" content="2016-10-25">
+            <time itemprop="dateCreated" datetime="2016-10-25T22:43:14+08:00" content="2016-10-25">
               2016-10-25
             </time>
           </span>
@@ -284,16 +284,13 @@
       
         
           
-            <p>#iOS开发之单例</p>
-<p>#单例介绍</p>
-<p>#1.什么是单例<br>单例模式是一种常用的软件设计模式。在它的核心结构中包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果系统在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
-<p>#2.单例用处<br>应用场景：<br>确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：<br>使用简单，延时求值，易于跨模块</p>
+            <h1 id="iOS开发之单例"><a href="#iOS开发之单例" class="headerlink" title="iOS开发之单例"></a>iOS开发之单例</h1><h1 id="单例介绍"><a href="#单例介绍" class="headerlink" title="单例介绍"></a>单例介绍</h1><h1 id="1-什么是单例"><a href="#1-什么是单例" class="headerlink" title="1.什么是单例"></a>1.什么是单例</h1><p>单例模式是一种常用的软件设计模式。在它的核心结构中包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果系统在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
+<h1 id="2-单例用处"><a href="#2-单例用处" class="headerlink" title="2.单例用处"></a>2.单例用处</h1><p>应用场景：<br>确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：<br>使用简单，延时求值，易于跨模块</p>
 <p>iOS的系统中用到的一些单例</p>
 <pre><code>[UIApplication sharedApplication];
 [NSUserDefaults standardUserDefaults];
 [NSURLCache sharedURLCache];
-</code></pre><p>#iOS单例的创建</p>
-<p>##1.单线程单例<br>单例类需要保证只有一个实例，因此在第一次访问这个实例的时候才创建，之后访问直接取已经创建好的实例</p>
+</code></pre><h1 id="iOS单例的创建"><a href="#iOS单例的创建" class="headerlink" title="iOS单例的创建"></a>iOS单例的创建</h1><h2 id="1-单线程单例"><a href="#1-单线程单例" class="headerlink" title="1.单线程单例"></a>1.单线程单例</h2><p>单例类需要保证只有一个实例，因此在第一次访问这个实例的时候才创建，之后访问直接取已经创建好的实例</p>
 <pre><code>+(instancetype)shareInstance
 {
     static Singleton *singleteon;
@@ -303,7 +300,7 @@
     return singleteon;
 }
 </code></pre><p>单线程单例存在一些弊端，在多线程的情况下，会产生线程不安全的情况。严格意义上来说，我们还需要把alloc方法变为私有方法才行，严格的单例是不允许再创建其他实例的，而alloc方法可以在外部任意生成实例。但是考虑到<strong>alloc</strong>属于NSObject，iOS中无法将<strong>alloc</strong>变成私有方法，最多只能覆盖<strong>alloc</strong>让其返回空。不过个人不建议这么做，一般情况下对<strong>alloc</strong>不做特殊处理。系统的单例也未对<strong>alloc</strong>做任何处理</p>
-<p>##2.@synchronized单例<br>上面单线程单例，在多线程情况下，可能会出现一些问题。如果两个线程同时调用<strong>shareInstanc</strong>,可能会创建出2个singleton出来。所以在对多线程情况下，我们需要使用<strong>@synchronize</strong>来加锁</p>
+<h2 id="2-synchronized单例"><a href="#2-synchronized单例" class="headerlink" title="2.@synchronized单例"></a>2.@synchronized单例</h2><p>上面单线程单例，在多线程情况下，可能会出现一些问题。如果两个线程同时调用<strong>shareInstanc</strong>,可能会创建出2个singleton出来。所以在对多线程情况下，我们需要使用<strong>@synchronize</strong>来加锁</p>
 <pre><code>+(instancetype)shareInstance
 {
     static Singleton *singleton;
@@ -315,7 +312,7 @@
     return singleton;
 }
 </code></pre><p>加锁以后，当多个线程同时调用shareInstance时，由于<strong>@synchronized</strong>已经加锁，只能有一个线程创建singleton实例。这样就解决了多线程调用单例的问题。</p>
-<p>##3.dispatch_once单例<br>使用<strong>@synchronized</strong>虽然一定程度上解决了多线程的问题，但并不完美。因为只有在<strong>singleton</strong>未创建时，加锁才是必要的。如果<strong>singleton</strong>已经创建，这个时候还加锁的话，会影响性能。<br>在iOS中，GCD为我们提供方便又高效的方法—<strong>dispatch_once</strong></p>
+<h2 id="3-dispatch-once单例"><a href="#3-dispatch-once单例" class="headerlink" title="3.dispatch_once单例"></a>3.dispatch_once单例</h2><p>使用<strong>@synchronized</strong>虽然一定程度上解决了多线程的问题，但并不完美。因为只有在<strong>singleton</strong>未创建时，加锁才是必要的。如果<strong>singleton</strong>已经创建，这个时候还加锁的话，会影响性能。<br>在iOS中，GCD为我们提供方便又高效的方法—<strong>dispatch_once</strong></p>
 <pre><code>+(instancetype)shareInstance
 {
     static Singleton *singleton;
@@ -380,8 +377,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/25/iOS开发之单例/" itemprop="url">
-                  Unbenannt
+                <a class="post-title-link" href="/2016/10/25/单例/" itemprop="url">
+                  单例
                 </a>
               
             
@@ -394,7 +391,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T22:27:02+08:00" content="2016-10-25">
+            <time itemprop="dateCreated" datetime="2016-10-25T22:37:42+08:00" content="2016-10-25">
               2016-10-25
             </time>
           </span>
