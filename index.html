@@ -420,8 +420,9 @@
             <p> iOS开发之单例</p>
 <h1 id="单例介绍"><a href="#单例介绍" class="headerlink" title="单例介绍"></a>单例介绍</h1><h1 id="1-什么是单例"><a href="#1-什么是单例" class="headerlink" title="1.什么是单例"></a>1.什么是单例</h1><p>单例模式是一种常用的软件设计模式。在它的核心结构中包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果系统在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。</p>
 <h1 id="2-单例用处"><a href="#2-单例用处" class="headerlink" title="2.单例用处"></a>2.单例用处</h1><p>应用场景：<br>确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：<br>使用简单，延时求值，易于跨模块</p>
-<p>iOS的系统中用到的一些单例<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[UIApplication sharedApplication];</div><div class="line">[NSUserDefaults standardUserDefaults];</div><div class="line">[NSURLCache sharedURLCache];</div></pre></td></tr></table></figure></p>
-<h1 id="iOS单例的创建"><a href="#iOS单例的创建" class="headerlink" title="iOS单例的创建"></a>iOS单例的创建</h1><h2 id="1-单线程单例"><a href="#1-单线程单例" class="headerlink" title="1.单线程单例"></a>1.单线程单例</h2><p>单例类需要保证只有一个实例，因此在第一次访问这个实例的时候才创建，之后访问直接取已经创建好的实例</p>
+<p>iOS的系统中用到的一些单例</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[UIApplication sharedApplication];</div><div class="line">[NSUserDefaults standardUserDefaults];</div><div class="line">[NSURLCache sharedURLCache];</div></pre></td></tr></table></figure>
+</code></pre><h1 id="iOS单例的创建"><a href="#iOS单例的创建" class="headerlink" title="iOS单例的创建"></a>iOS单例的创建</h1><h2 id="1-单线程单例"><a href="#1-单线程单例" class="headerlink" title="1.单线程单例"></a>1.单线程单例</h2><p>单例类需要保证只有一个实例，因此在第一次访问这个实例的时候才创建，之后访问直接取已经创建好的实例</p>
 <pre><code>+(instancetype)shareInstance
 {
     static Singleton *singleteon;
