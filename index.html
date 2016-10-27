@@ -423,7 +423,7 @@
 <p>iOS的系统中用到的一些单例</p>
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[UIApplication sharedApplication];</div><div class="line">[NSUserDefaults standardUserDefaults];</div><div class="line">[NSURLCache sharedURLCache];</div></pre></td></tr></table></figure>
 </code></pre><h1 id="iOS单例的创建"><a href="#iOS单例的创建" class="headerlink" title="iOS单例的创建"></a>iOS单例的创建</h1><h2 id="1-单线程单例"><a href="#1-单线程单例" class="headerlink" title="1.单线程单例"></a>1.单线程单例</h2><p>单例类需要保证只有一个实例，因此在第一次访问这个实例的时候才创建，之后访问直接取已经创建好的实例</p>
-<pre><code>+(instancetype)shareInstance
+<pre><code class="+objc">+(instancetype)shareInstance
 {
     static Singleton *singleteon;
     if (!singleteon ) {
@@ -431,7 +431,8 @@
     }
     return singleteon;
 }
-</code></pre><p>单线程单例存在一些弊端，在多线程的情况下，会产生线程不安全的情况。严格意义上来说，我们还需要把alloc方法变为私有方法才行，严格的单例是不允许再创建其他实例的，而alloc方法可以在外部任意生成实例。但是考虑到<strong>alloc</strong>属于NSObject，iOS中无法将<strong>alloc</strong>变成私有方法，最多只能覆盖<strong>alloc</strong>让其返回空。不过个人不建议这么做，一般情况下对<strong>alloc</strong>不做特殊处理。系统的单例也未对<strong>alloc</strong>做任何处理</p>
+</code></pre>
+<p>单线程单例存在一些弊端，在多线程的情况下，会产生线程不安全的情况。严格意义上来说，我们还需要把alloc方法变为私有方法才行，严格的单例是不允许再创建其他实例的，而alloc方法可以在外部任意生成实例。但是考虑到<strong>alloc</strong>属于NSObject，iOS中无法将<strong>alloc</strong>变成私有方法，最多只能覆盖<strong>alloc</strong>让其返回空。不过个人不建议这么做，一般情况下对<strong>alloc</strong>不做特殊处理。系统的单例也未对<strong>alloc</strong>做任何处理</p>
 <h2 id="2-synchronized单例"><a href="#2-synchronized单例" class="headerlink" title="2.@synchronized单例"></a>2.@synchronized单例</h2><p>上面单线程单例，在多线程情况下，可能会出现一些问题。如果两个线程同时调用<strong>shareInstanc</strong>,可能会创建出2个singleton出来。所以在对多线程情况下，我们需要使用<strong>@synchronize</strong>来加锁</p>
 <pre><code>+(instancetype)shareInstance
 {
