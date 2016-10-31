@@ -32,7 +32,7 @@
     <link href="http://yoursite.com/2016/08/31/UITableView%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/"/>
     <id>http://yoursite.com/2016/08/31/UITableView的优化技巧/</id>
     <published>2016-08-31T15:16:10.000Z</published>
-    <updated>2016-10-31T12:01:26.000Z</updated>
+    <updated>2016-10-31T13:03:38.000Z</updated>
     <content type="html"><![CDATA[<p>这段时间也看了很多关于tableview优化的文章，结合项目的一些实践 ，思考了一些关于UITableView化技巧。UITableView是iOS开发中最常用的控件之一。</p>
 <h2 id="UITableView的简单认识"><a href="#UITableView的简单认识" class="headerlink" title="UITableView的简单认识"></a>UITableView的简单认识</h2><h3 id="1-重用机制"><a href="#1-重用机制" class="headerlink" title="1.重用机制"></a>1.重用机制</h3><p>UITableView最核心的思想就是UITableViewCell的重用机制。UITableView只会创建一屏的UITableViewCell，其他都是从中取出来重用的。每当Cell滑出屏幕时，就会放入到一个集合中，当要显示某一位置的Cell时，会先去集合中取，如果有，就直接重用显示。如果没有，才会创建，这样能极大的减少内存开销。</p>
 <h3 id="2-代理方法"><a href="#2-代理方法" class="headerlink" title="2.代理方法"></a>2.代理方法</h3><p>UITableView最主要的两个代理方法<strong>tableView:cellForRowAtIndexPath:</strong>和<strong>tableView:heightForRowAtIndexPath:</strong>。我最开始接触UITableView的时候，认为UITableView会先调用前者，再调用后者，因为这跟我们创建控件的思路是一样的，先创建它，然后设置它的布局。但实际上并非如此，UITableView是继承自UIScrollView的，需要先确定它的<strong>contentSize</strong>及每个Cell的位置，然后才会把重用的Cell放置到对应的位置。所以事实上，UITableView的回调顺序是先多次调用<strong>tableView:heightForRowAtIndexPath:</strong>以确定contentSize及Cell的位置，然后才会调用<strong>tableView:cellForRowAtIndexPath:</strong>，来显示在当前屏幕的cell。<br>举个例子来说：如果现在要显示100个Cell，当前屏幕显示5个。刷新(reload)UITableView时，UITableView会先调用100次<strong>tableView:heightForRowAtIndexPath:</strong>方法，然后调用5次<strong>tableView:cellForRowAtIndexPath:</strong>方法；滚动屏幕时，每当Cell滚入屏幕，都会调用一次<strong>tableView:heightForRowAtIndexPath:</strong>、<strong>tableView:cellForRowAtIndexPath:</strong>方法。通过上述的讲解后，首先想到的UITableView优化的方案是优化上面的UITableView两个代理方法。</p>
@@ -81,18 +81,17 @@
 <li>暂缓进入reuse queue</li>
 </ul>
 </blockquote>
-<h4 id="7-2-UITableView"><a href="#7-2-UITableView" class="headerlink" title="7.2 UITableView"></a>7.2 UITableView</h4><p>新增加了一个protocol,以及两个代理方法<br>&gt;</p>
-<blockquote>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;<span class="built_in">UITableViewDataSourcePrefetching</span>&gt; prefetchDataSource <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">10</span>_0);</div><div class="line"></div><div class="line">&gt; <span class="class"><span class="keyword">@protocol</span> <span class="title">UITableViewDataSourcePrefetching</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line">&gt; <span class="keyword">@required</span></div><div class="line">&gt; - (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView prefetchRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths;</div><div class="line">&gt;<span class="keyword">@optional</span></div><div class="line"></div><div class="line">&gt; - (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *) tableView cancelPrefetchingForRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths;</div><div class="line"></div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<h4 id="7-2-UITableView"><a href="#7-2-UITableView" class="headerlink" title="7.2 UITableView"></a>7.2 UITableView</h4><p>新增加了一个protocol,以及两个代理方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;<span class="built_in">UITableViewDataSourcePrefetching</span>&gt; prefetchDataSource <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">10</span>_0);</div><div class="line"> <span class="class"><span class="keyword">@protocol</span> <span class="title">UITableViewDataSourcePrefetching</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"> <span class="keyword">@required</span></div><div class="line"> - (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView prefetchRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths;</div><div class="line"><span class="keyword">@optional</span></div><div class="line"></div><div class="line"> - (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *) tableView cancelPrefetchingForRowsAtIndexPaths:(<span class="built_in">NSArray</span>&lt;<span class="built_in">NSIndexPath</span> *&gt; *)indexPaths;</div></pre></td></tr></table></figure>
 <p>除了上述提到的几个方面外，还有一些大家都比较熟悉的优化点：</p>
 <ul>
 <li>正确使用重用机制</li>
 <li>尽量少用或者不用透明图层</li>
 <li>减少subviews的数量</li>
-<li>如果Cell内部的内容来自web，使用异步加载，缓存请求结果<br>*</li>
+<li>如果Cell内部的内容来自web，使用异步加载，缓存请求结果</li>
 </ul>
 <h3 id="如何评测界面的流畅度"><a href="#如何评测界面的流畅度" class="headerlink" title="如何评测界面的流畅度"></a>如何评测界面的流畅度</h3><p>屏幕的刷新频率为60HZ，当列表快速滑动时仍能保持屏幕刷新频率为50~60FPS，则说明滑动比较顺畅。可以利用FPS指示器：<a href="https://github.com/ibireme/YYText/blob/master/Demo/YYTextDemo/YYFPSLabel.m" title="FPSLabel" target="_blank" rel="external">FPSLabel</a>来监视CPU的卡顿问题。</p>
+<p>github地址:<a href="https://github.com/jingwanli6666/OpenResource/" title="下载地址" target="_blank" rel="external">https://github.com/jingwanli6666/OpenResource/</a></p>
 <p>参考文献：<br><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" title="iOS 保持界面流畅的技巧" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
 ]]></content>
     <summary type="html">
