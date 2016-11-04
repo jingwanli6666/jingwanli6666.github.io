@@ -4,46 +4,14 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/10/29/Xcode%208%20%E5%92%8CiOS%2010%20%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
-    <lastmod>2016-11-04T13:03:37.000Z</lastmod>
+    <loc>http://yoursite.com/2016/02/27/caffe-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2016-11-04T13:46:00.000Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2016-10-29T11:30:18.000Z</pubTime>
+        <title>caffe--学习笔记</title>
+        <pubTime>2016-02-27T13:53:40.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/08/31/UITableView%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2016-10-31T13:03:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>UITableView的优化技巧</title>
-        <pubTime>2016-08-31T15:16:10.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
-    <loc>http://yoursite.com/2015/10/25/iOS%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E4%BE%8B/</loc>
-    <lastmod>2016-10-29T08:00:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS开发之单例模式</title>
-        <pubTime>2015-10-25T15:16:52.000Z</pubTime>
-        
-        <tag>iOS</tag>
+        <tag>深度学习</tag>
          
          
            
@@ -54,7 +22,7 @@
     
   <url>
     <loc>http://yoursite.com/2016/04/25/%E5%9B%BD%E5%86%85iOS%E7%89%9B%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2016-10-29T07:46:06.000Z</lastmod>
+    <lastmod>2016-11-04T13:45:37.000Z</lastmod>
     <data>
         <display>
         <title>国内iOS牛人博客</title>
@@ -70,14 +38,29 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/02/27/caffe-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2016-10-29T07:45:34.000Z</lastmod>
+    <loc>http://yoursite.com/2016/11/04/Xcode%208%20%E5%92%8CiOS%2010%20%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2016-11-04T13:45:04.000Z</lastmod>
     <data>
         <display>
-        <title>caffe--学习笔记</title>
-        <pubTime>2016-02-27T13:53:40.000Z</pubTime>
+        <title></title>
+        <pubTime>2016-11-04T13:45:04.000Z</pubTime>
         
-        <tag>深度学习</tag>
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/25/iOS%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E4%BE%8B/</loc>
+    <lastmod>2016-11-04T13:44:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发之单例模式</title>
+        <pubTime>2015-10-25T15:16:52.000Z</pubTime>
+        
+        <tag>iOS</tag>
          
          
            
@@ -85,4 +68,21 @@
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://yoursite.com/2016/08/31/UITableView%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2016-11-04T13:43:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>UITableView的优化技巧</title>
+        <pubTime>2016-08-31T15:16:10.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
 </urlset>

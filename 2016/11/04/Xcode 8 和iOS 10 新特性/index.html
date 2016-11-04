@@ -93,7 +93,7 @@
 新创建的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="勤能补拙">
-<meta property="og:url" content="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/Xcode 8 和iOS 10 新特性/index.html">
 <meta property="og:site_name" content="勤能补拙">
 <meta property="og:description" content="Xcode 8和 iOS10 新特性Interface Builder
 在Xcode8中，苹果推出了更加强大的可视化编辑工具以及预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5存一系列屏幕的选项。 直接点击不同屏幕尺寸，以及横竖屏，切换不同的屏幕显示。在iPad上还可以选择是否分屏。
@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/images/privacy.png">
 <meta property="og:image" content="http://yoursite.com/images/log.png">
 <meta property="og:image" content="http://yoursite.com/images/push.png">
-<meta property="og:updated_time" content="2016-11-04T13:03:37.000Z">
+<meta property="og:updated_time" content="2016-11-04T13:45:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="勤能补拙">
 <meta name="twitter:description" content="Xcode 8和 iOS10 新特性Interface Builder
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/04/Xcode 8 和iOS 10 新特性/"/>
 
 
   <title>  | 勤能补拙 </title>
@@ -277,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T19:30:18+08:00" content="2016-10-29">
-              2016-10-29
+            <time itemprop="dateCreated" datetime="2016-11-04T21:45:04+08:00" content="2016-11-04">
+              2016-11-04
             </time>
           </span>
 
@@ -288,8 +288,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/29/Xcode 8 和iOS 10 新特性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/Xcode 8 和iOS 10 新特性/" itemprop="commentsCount"></span>
+                <a href="/2016/11/04/Xcode 8 和iOS 10 新特性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/Xcode 8 和iOS 10 新特性/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,7 +299,7 @@
 
           
           
-             <span id="/2016/10/29/Xcode 8 和iOS 10 新特性/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/11/04/Xcode 8 和iOS 10 新特性/" class="leancloud_visitors" data-flag-title="">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -332,7 +332,7 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^completionBlock)();</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) completionBlock completionblock;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></div><div class="line">    </div><div class="line">    <span class="comment">// 1.Buildtime提示ARC Retain Cycle错误</span></div><div class="line">    <span class="keyword">self</span>.completionblock = ^&#123;</div><div class="line">      <span class="keyword">self</span>.name = <span class="string">@"jason"</span>;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="comment">//2.Runtime Issues提示内存泄漏</span></div><div class="line">    <span class="built_in">NSMutableArray</span> *arr1 = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">    <span class="built_in">NSMutableArray</span> *arr2 = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">    </div><div class="line">    [arr1 addObject:arr2];</div><div class="line">    [arr2 addObject:arr1];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过Xcode8提供的Runtime Issues新特性，查找到运行过程中出现的问题，并通过Graph的方式将问题可视化的展现给开发者。<br><img src="images/runtime_issue.png" alt="Runtime Issues新特性" title="Runtime Issues新特性"></p>
 <h2 id="内存调试–Debug-Memory-Graph"><a href="#内存调试–Debug-Memory-Graph" class="headerlink" title="内存调试–Debug Memory Graph"></a>内存调试–Debug Memory Graph</h2><p>Xcode 8用相当强大的内存调试器来跟踪内存的泄漏和循环。点击如下图所示红色方框的图标，然后在左边区域选择一个对象，查看与其相关的内存关系。<br><img src="images/debug.png" alt="Debug Memory Graph新特性" title="Debug Memory Graph新特性"></p>
-<p>Debug Memory Graph和Runtime Issues可以配合使用，通过Debug Memory Graph分析内存关系完成后，点击Runtime Issues可以看到已经发现的内存问题。</p>
+<p>Debug Memory Graph和Runtime Issues可以配合使用，通过Debug Memory Graph分析内存关系完成后，点击Runtime Issues可以看到已经发现的内存问题。<br><a id="more"></a></p>
 <h2 id="代码签名"><a href="#代码签名" class="headerlink" title="代码签名"></a>代码签名</h2><p>在Xcode8之前，都需要自己设置证书和描述文件。如果设置出现错误的情况下，还可以通过点击Fix issue来修复这个错误。但这有个问题就在于，Fix issue选项并不是那么好用，有的时候设置是正确的这里也提示需要Fix issue。</p>
 <p>在Xcode8中可以通过Automatically manage signing选项，让苹果为我们管理证书和配置文件，设置也都是由苹果来完成的。在Xcode8中新建项目，这个选项默认是被勾选的。打勾以后，Xcode为你管理certificates, provisioning profiles和 application identifiers。<br><img src="images/codesign.png" alt="代码签名" title="代码签名新特性"></p>
 <h2 id="编译错误"><a href="#编译错误" class="headerlink" title="编译错误"></a>编译错误</h2><p>升级Xcode之后，Xcode8对之前的一些修饰符和语句不兼容，会导致一些编译错误。</p>
@@ -454,8 +454,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/29/Xcode 8 和iOS 10 新特性/"
-           data-title="" data-url="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/">
+      <div class="ds-thread" data-thread-key="2016/11/04/Xcode 8 和iOS 10 新特性/"
+           data-title="" data-url="http://yoursite.com/2016/11/04/Xcode 8 和iOS 10 新特性/">
       </div>
     
   </div>
