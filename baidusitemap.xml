@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/10/29/Xcode%208%20%E5%92%8CiOS%2010%20%E6%96%B0%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2016-11-04T13:03:37.000Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2016-10-29T11:30:18.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/08/31/UITableView%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2016-10-31T13:03:38.000Z</lastmod>
     <data>
@@ -64,21 +79,6 @@
         
         <tag>深度学习</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/10/26/%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85/</loc>
-    <lastmod>2016-10-26T03:16:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>自动打包.md</title>
-        <pubTime>2016-10-26T03:16:52.000Z</pubTime>
-        
          
            
         </display>

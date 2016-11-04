@@ -1,0 +1,839 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="勤能补拙" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Xcode 8和 iOS10 新特性Interface Builder
+在Xcode8中，苹果推出了更加强大的可视化编辑工具以及预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5存一系列屏幕的选项。 直接点击不同屏幕尺寸，以及横竖屏，切换不同的屏幕显示。在iPad上还可以选择是否分屏。
+
+
+新创建的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="勤能补拙">
+<meta property="og:url" content="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/index.html">
+<meta property="og:site_name" content="勤能补拙">
+<meta property="og:description" content="Xcode 8和 iOS10 新特性Interface Builder
+在Xcode8中，苹果推出了更加强大的可视化编辑工具以及预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5存一系列屏幕的选项。 直接点击不同屏幕尺寸，以及横竖屏，切换不同的屏幕显示。在iPad上还可以选择是否分屏。
+
+
+新创建的">
+<meta property="og:image" content="http://yoursite.com/images/2.png">
+<meta property="og:image" content="http://yoursite.com/images/swift.png">
+<meta property="og:image" content="http://yoursite.com/images/xcodeExtension.png">
+<meta property="og:image" content="http://yoursite.com/images/runtime_issue.png">
+<meta property="og:image" content="http://yoursite.com/images/debug.png">
+<meta property="og:image" content="http://yoursite.com/images/codesign.png">
+<meta property="og:image" content="http://yoursite.com/images/privacy.png">
+<meta property="og:image" content="http://yoursite.com/images/log.png">
+<meta property="og:image" content="http://yoursite.com/images/push.png">
+<meta property="og:updated_time" content="2016-11-04T13:03:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="勤能补拙">
+<meta name="twitter:description" content="Xcode 8和 iOS10 新特性Interface Builder
+在Xcode8中，苹果推出了更加强大的可视化编辑工具以及预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5存一系列屏幕的选项。 直接点击不同屏幕尺寸，以及横竖屏，切换不同的屏幕显示。在iPad上还可以选择是否分屏。
+
+
+新创建的">
+<meta name="twitter:image" content="http://yoursite.com/images/2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/"/>
+
+
+  <title>  | 勤能补拙 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?abd3d07e6f3008ef4384a8b63eddf8ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">勤能补拙</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">生活不易，且行且珍惜</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T19:30:18+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/29/Xcode 8 和iOS 10 新特性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/Xcode 8 和iOS 10 新特性/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/29/Xcode 8 和iOS 10 新特性/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Xcode-8和-iOS10-新特性"><a href="#Xcode-8和-iOS10-新特性" class="headerlink" title="Xcode 8和 iOS10 新特性"></a>Xcode 8和 iOS10 新特性</h1><h2 id="Interface-Builder"><a href="#Interface-Builder" class="headerlink" title="Interface Builder"></a>Interface Builder</h2><blockquote>
+<p>在Xcode8中，苹果推出了更加强大的可视化编辑工具以及预览功能，可以在不运行App的情况下，预览当前XIB或SB在不同屏幕尺寸下的显示。选择一个XIB文件进去，点击下面红框的位置，会出现从3.5寸-5.5存一系列屏幕的选项。 直接点击不同屏幕尺寸，以及横竖屏，切换不同的屏幕显示。在iPad上还可以选择是否分屏。</p>
+</blockquote>
+<p><img src="images/2.png" alt="Interface Builder" title="Interface Builder"></p>
+<p>新创建的XIB控件尺寸，不再是之前600*600的方块了，而是默认是6s的长方形XIB文件</p>
+<h2 id="Swift-2-和-3"><a href="#Swift-2-和-3" class="headerlink" title="Swift 2 和 3"></a>Swift 2 和 3</h2><p>在Xcode 8之前，Xcode的每一个版本都是内置明确版本的swift编程语言。在Xcode 8中就不同了。因为Swift 3有了大量的改变，而且大多数改变是具有破坏性的。<br>使用Xcode 8创建默认使用的Swift 3。幸运的是Xcode 8中的building setting选项可以让开发者明确表明继续使用Swift 2和Swift 2.3。<br><img src="images/swift.png" alt="Swift" title="Swift变化"><br>如果不想立刻就迁移到Swift 3，可以在Builder Setting中进行设置，选择Use Legacy Swift Language Version设置为YES，就可以继续使用就版本的Swift2.3。</p>
+<h2 id="Xcode插件"><a href="#Xcode插件" class="headerlink" title="Xcode插件"></a>Xcode插件</h2><p>升级Xcode8之后会发现，Xcode8中所有第三方插件都失效了，并且连之前菜单栏的插件选项也不存在了。在之前很多iOS开发者，都是通过Alcatraz来管理插件的，现在Alcatraz也是不可用的。但是Xcode8自身也对编译器进行了升级，将一些比较好的插件功能加入到Xcode中，例如单行高亮显示等。<br>在Xcode8中支持了开发插件工程，并且为我们提供了一个插件模板，开发的插件可以上传到App Store下载。苹果这么做有一个原因在于，之前Xcode和插件是运行在同一个进程的，所以插件的崩溃也会导致Xcode崩溃。苹果现在将插件作为一个单独的应用程序，分开进程运行，不会对Xcode带来其他影响。<br>然后选择 Editor -&gt; add a new Target。选择 Xcode Source Editor Extension 并创建，然后你会得到一个询问是否切换到扩展 scheme 的提示，选择切换。  </p>
+<p><img src="images/xcodeExtension.png" alt="Xcode插件" title="Xcode插件"></p>
+<h2 id="Runtime-Issues"><a href="#Runtime-Issues" class="headerlink" title="Runtime Issues"></a>Runtime Issues</h2><p>在iOS开发过程中，因为语法错误或者缺少头文件，编译器可以发现并报黄色或红色警告。但一些代码逻辑导致的错误(循环引用)，编译器并没有办法找到。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^completionBlock)();</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) completionBlock completionblock;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></div><div class="line">    </div><div class="line">    <span class="comment">// 1.Buildtime提示ARC Retain Cycle错误</span></div><div class="line">    <span class="keyword">self</span>.completionblock = ^&#123;</div><div class="line">      <span class="keyword">self</span>.name = <span class="string">@"jason"</span>;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="comment">//2.Runtime Issues提示内存泄漏</span></div><div class="line">    <span class="built_in">NSMutableArray</span> *arr1 = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">    <span class="built_in">NSMutableArray</span> *arr2 = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">    </div><div class="line">    [arr1 addObject:arr2];</div><div class="line">    [arr2 addObject:arr1];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过Xcode8提供的Runtime Issues新特性，查找到运行过程中出现的问题，并通过Graph的方式将问题可视化的展现给开发者。<br><img src="images/runtime_issue.png" alt="Runtime Issues新特性" title="Runtime Issues新特性"></p>
+<h2 id="内存调试–Debug-Memory-Graph"><a href="#内存调试–Debug-Memory-Graph" class="headerlink" title="内存调试–Debug Memory Graph"></a>内存调试–Debug Memory Graph</h2><p>Xcode 8用相当强大的内存调试器来跟踪内存的泄漏和循环。点击如下图所示红色方框的图标，然后在左边区域选择一个对象，查看与其相关的内存关系。<br><img src="images/debug.png" alt="Debug Memory Graph新特性" title="Debug Memory Graph新特性"></p>
+<p>Debug Memory Graph和Runtime Issues可以配合使用，通过Debug Memory Graph分析内存关系完成后，点击Runtime Issues可以看到已经发现的内存问题。</p>
+<h2 id="代码签名"><a href="#代码签名" class="headerlink" title="代码签名"></a>代码签名</h2><p>在Xcode8之前，都需要自己设置证书和描述文件。如果设置出现错误的情况下，还可以通过点击Fix issue来修复这个错误。但这有个问题就在于，Fix issue选项并不是那么好用，有的时候设置是正确的这里也提示需要Fix issue。</p>
+<p>在Xcode8中可以通过Automatically manage signing选项，让苹果为我们管理证书和配置文件，设置也都是由苹果来完成的。在Xcode8中新建项目，这个选项默认是被勾选的。打勾以后，Xcode为你管理certificates, provisioning profiles和 application identifiers。<br><img src="images/codesign.png" alt="代码签名" title="代码签名新特性"></p>
+<h2 id="编译错误"><a href="#编译错误" class="headerlink" title="编译错误"></a>编译错误</h2><p>升级Xcode之后，Xcode8对之前的一些修饰符和语句不兼容，会导致一些编译错误。</p>
+<ul>
+<li>1.一些泛型相关的修饰符，nullable之类的有的会报错。</li>
+<li>2.CAAnimation及其子类，设置代理属性后，必须在@interface()遵守代理，否则报错，等等。</li>
+</ul>
+<h2 id="控件错位或者不显示问题"><a href="#控件错位或者不显示问题" class="headerlink" title="控件错位或者不显示问题"></a>控件错位或者不显示问题</h2><p>在使用view.frame之前需要调用如下的语句：<br><code>objc
+[self.view layoutIfNedded]</code><br>来更新frame值，不然frame的宽和高都是1000</p>
+<h2 id="Info-plist增加权限字段"><a href="#Info-plist增加权限字段" class="headerlink" title="Info.plist增加权限字段"></a>Info.plist增加权限字段</h2><p>Xcode8构建的app，在使用相册、相机等权限时会崩溃。错误信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">This app has crashed because it attempted to access privacy-sensitive data without a usage description.  </div><div class="line">The app&apos;s Info.plist must contain an NSPhotoLibraryUsageDescription key with a string value explaining to the user how the app uses this data.</div></pre></td></tr></table></figure></p>
+<p>官方文档解释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Important: To protect user privacy, an iOS app linked on or after iOS 10.0, and which accesses the user’s photo library, must statically declare the intent to do so. Include the NSPhotoLibraryUsageDescription key in your app’s Info.plist file and provide a purpose string for this key. If your app attempts to access the user’s photo library without a corresponding purpose string, your app exits.</div><div class="line"></div><div class="line">必须在Info.plist文件中增加NSPhotoLibraryUsageDescription键，并且填入合适的描述文本</div></pre></td></tr></table></figure>
+<p>下面是一些常用的字段，如果有缺少的麻烦各位评论区补充一下。<br><img src="images/privacy.png" alt="权限字段" title="权限字段属性"></p>
+<h2 id="UITableView、UICollectionView生命周期适配"><a href="#UITableView、UICollectionView生命周期适配" class="headerlink" title="UITableView、UICollectionView生命周期适配"></a>UITableView、UICollectionView生命周期适配</h2><p>这章WWDC介绍了UITableView和UICollectionView的生命周期在iOS10中发生了改变。</p>
+<p>在iOS9及之前，一个UICollectionViewCell被重用的过程是这样的：</p>
+<ul>
+<li>一个cell即将出现的屏幕上</li>
+<li>prepareForReuse</li>
+<li>cellForItemAtIndexPath</li>
+<li>willDisplayCell</li>
+<li>……</li>
+<li>一个cell完全离开屏幕</li>
+<li>didEndDisplayCell</li>
+<li>进入reuse queue</li>
+</ul>
+<p>但在iOS10中，一个UICollectionViewCell被重用的过程变成了这样：</p>
+<ul>
+<li>一个cell还没出现在屏幕上</li>
+<li>prepareForReuse</li>
+<li>cellForItemAtIndexPath</li>
+<li>一个cell即将出现的屏幕上</li>
+<li>……</li>
+<li>一个cell完全离开屏幕</li>
+<li>didEndDisplayCell</li>
+<li>一段时间后再进入reuse queue</li>
+</ul>
+<p>所以，iOS10后，cellForItemAtIndexPath被调用时，并不表示这个cell即将要出现在了屏幕上。还是得老老实实使用willDisplayCell和didEndDisplayCell方法。</p>
+<h2 id="系统log"><a href="#系统log" class="headerlink" title="系统log"></a>系统log</h2><p>升级Xcode8之后，在调试和运行过程中，发现控制台打印了很多不认识的log，这些log是系统打印的，和开发者没关系。但是这么多log看着比较乱，怎么屏蔽掉呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">com.apple.siri, category: Intents, enable_level: 1, persist_level: 1, default_ttl: 0, info_ttl: 0, debug_ttl: 0, generate_symptoms: 0, enable_oversize: 0, privacy_setting: 0, enable_private_data: 0</div></pre></td></tr></table></figure></p>
+<p>在Product -&gt; Scheme -&gt; Edit Scheme -&gt; Run -&gt; Arguments中或者使用快捷键⌘ + &gt;，添加<strong>OS_ACTIVITY_MODE</strong>字段，并设置为Disable即可<br><img src="images/log.png" alt="删除系统log" title="删除系统log"></p>
+<h2 id="推送通知"><a href="#推送通知" class="headerlink" title="推送通知"></a>推送通知</h2><p>苹果的推送在之前iOS8和iOS9的时候就发生过大的更新，推送功能越来越强大。在iOS10之后苹果推出了UserNotifications框架( 具体可以看瞄神的博客<a href="https://onevcat.com/2016/08/notification/" title="UserNotifications框架" target="_blank" rel="external">UserNotifications框架</a> )，可以通过这个框架更好的控制推送通知，可以更新、修改锁屏页面的推送消息，可以添加图片、视频等功能。<br>在Xcode8之后，如果需要使用Push Notifications的功能，需要勾选Capabilities -&gt; Push Notifications为YES，否则进行远程推送就会有问题<br><img src="images/push.png" alt="推送通知" title="推送通知"></p>
+<h2 id="其他更新"><a href="#其他更新" class="headerlink" title="其他更新"></a>其他更新</h2><p>1.Xcode 8不允许开发人员安装插件，Xcode 8中集成了一些常用的插件。</p>
+<ul>
+<li>1.1 <strong>在Xcode 8中将光标放在方法上面，通过option + command + / 生成文档注解</strong>   </li>
+<li>1.2 <strong>被编辑的行高亮显示</strong></li>
+<li>1.3 <strong>集成KSImageNamed功能</strong></li>
+</ul>
+<p>2.Xcode新版字体，SF Mono Regular字体<br>3.最新版的API文档样式</p>
+<p>参考文献：<br><a href="http://www.jianshu.com/p/c1904fd8db06" title="Xcode 8 带来的新特性和坑" target="_blank" rel="external">Xcode 8 带来的新特性和坑</a><br><a href="http://www.jianshu.com/p/e9d63751e924/comments/4000785" title="Xcode8 中的新内容" target="_blank" rel="external">Xcode8 中的新内容</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢!我会继续努力,谢谢！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.jpg" alt="jasonjwl WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/31/UITableView的优化技巧/" rel="next" title="UITableView的优化技巧">
+                <i class="fa fa-chevron-left"></i> UITableView的优化技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/29/Xcode 8 和iOS 10 新特性/"
+           data-title="" data-url="http://yoursite.com/2016/10/29/Xcode 8 和iOS 10 新特性/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="jasonjwl" />
+          <p class="site-author-name" itemprop="name">jasonjwl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jingwanli6666/" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/jasonjwl" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xcode-8和-iOS10-新特性"><span class="nav-number">1.</span> <span class="nav-text">Xcode 8和 iOS10 新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface-Builder"><span class="nav-number">1.1.</span> <span class="nav-text">Interface Builder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-2-和-3"><span class="nav-number">1.2.</span> <span class="nav-text">Swift 2 和 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode插件"><span class="nav-number">1.3.</span> <span class="nav-text">Xcode插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Runtime-Issues"><span class="nav-number">1.4.</span> <span class="nav-text">Runtime Issues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存调试–Debug-Memory-Graph"><span class="nav-number">1.5.</span> <span class="nav-text">内存调试–Debug Memory Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码签名"><span class="nav-number">1.6.</span> <span class="nav-text">代码签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译错误"><span class="nav-number">1.7.</span> <span class="nav-text">编译错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控件错位或者不显示问题"><span class="nav-number">1.8.</span> <span class="nav-text">控件错位或者不显示问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Info-plist增加权限字段"><span class="nav-number">1.9.</span> <span class="nav-text">Info.plist增加权限字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITableView、UICollectionView生命周期适配"><span class="nav-number">1.10.</span> <span class="nav-text">UITableView、UICollectionView生命周期适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统log"><span class="nav-number">1.11.</span> <span class="nav-text">系统log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送通知"><span class="nav-number">1.12.</span> <span class="nav-text">推送通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他更新"><span class="nav-number">1.13.</span> <span class="nav-text">其他更新</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jasonjwl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jingwanli6666"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("aWDPh181twRAnmH2BwTG0CsO-gzGzoHsz", "OzHQyrSb2wWrA8gOf7r8dO26");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>
