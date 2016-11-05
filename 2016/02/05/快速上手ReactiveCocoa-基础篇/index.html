@@ -1,0 +1,1239 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="勤能补拙" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="1.ReactiveCocoa&amp;#x7B80;&amp;#x4ECB;ReactiveCocoa&amp;#xFF08;&amp;#x7B80;&amp;#x79F0;&amp;#x4E3A;RAC&amp;#xFF09;,&amp;#x662F;&amp;#x7531;Github&amp;#x5F00;&amp;#x6E90;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x4E8E;iOS&amp;#x548C;OS&amp;#x5F00;&amp;#x53">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(转载)快速上手ReactiveCocoa--基础篇">
+<meta property="og:url" content="http://yoursite.com/2016/02/05/快速上手ReactiveCocoa-基础篇/index.html">
+<meta property="og:site_name" content="勤能补拙">
+<meta property="og:description" content="1.ReactiveCocoa&amp;#x7B80;&amp;#x4ECB;ReactiveCocoa&amp;#xFF08;&amp;#x7B80;&amp;#x79F0;&amp;#x4E3A;RAC&amp;#xFF09;,&amp;#x662F;&amp;#x7531;Github&amp;#x5F00;&amp;#x6E90;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x4E8E;iOS&amp;#x548C;OS&amp;#x5F00;&amp;#x53">
+<meta property="og:updated_time" content="2016-11-05T13:19:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(转载)快速上手ReactiveCocoa--基础篇">
+<meta name="twitter:description" content="1.ReactiveCocoa&amp;#x7B80;&amp;#x4ECB;ReactiveCocoa&amp;#xFF08;&amp;#x7B80;&amp;#x79F0;&amp;#x4E3A;RAC&amp;#xFF09;,&amp;#x662F;&amp;#x7531;Github&amp;#x5F00;&amp;#x6E90;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x4E8E;iOS&amp;#x548C;OS&amp;#x5F00;&amp;#x53">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/02/05/快速上手ReactiveCocoa-基础篇/"/>
+
+
+  <title> (转载)快速上手ReactiveCocoa--基础篇 | 勤能补拙 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?abd3d07e6f3008ef4384a8b63eddf8ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">勤能补拙</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">生活不易，且行且珍惜</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                (转载)快速上手ReactiveCocoa--基础篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-05T21:05:19+08:00" content="2016-02-05">
+              2016-02-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/05/快速上手ReactiveCocoa-基础篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/05/快速上手ReactiveCocoa-基础篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/05/快速上手ReactiveCocoa-基础篇/" class="leancloud_visitors" data-flag-title="(转载)快速上手ReactiveCocoa--基础篇">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.ReactiveCocoa&#x7B80;&#x4ECB;<br>ReactiveCocoa&#xFF08;&#x7B80;&#x79F0;&#x4E3A;RAC&#xFF09;,&#x662F;&#x7531;Github&#x5F00;&#x6E90;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x4E8E;iOS&#x548C;OS&#x5F00;&#x53D1;&#x7684;&#x65B0;&#x6846;&#x67B6;,Cocoa&#x662F;&#x82F9;&#x679C;&#x6574;&#x5957;&#x6846;&#x67B6;&#x7684;&#x7B80;&#x79F0;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x591A;&#x82F9;&#x679C;&#x6846;&#x67B6;&#x559C;&#x6B22;&#x4EE5;Cocoa&#x7ED3;&#x5C3E;&#x3002;</p>
+<p>2.ReactiveCocoa&#x4F5C;&#x7528;<br>&#x5728;&#x6211;&#x4EEC;iOS&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5F53;&#x67D0;&#x4E9B;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5904;&#x7406;&#x67D0;&#x4E9B;&#x4E1A;&#x52A1;&#x903B;&#x8F91;,&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x90FD;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5904;&#x7406;&#x3002;<br>&#x6BD4;&#x5982;&#x6309;&#x94AE;&#x7684;&#x70B9;&#x51FB;&#x4F7F;&#x7528;action&#xFF0C;ScrollView&#x6EDA;&#x52A8;&#x4F7F;&#x7528;delegate&#xFF0C;&#x5C5E;&#x6027;&#x503C;&#x6539;&#x53D8;&#x4F7F;&#x7528;KVO&#x7B49;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x65B9;&#x5F0F;&#x3002;<br>&#x5176;&#x5B9E;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;RAC&#x5904;&#x7406;<br>ReactiveCocoa&#x4E3A;&#x4E8B;&#x4EF6;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E14;&#x5229;&#x7528;RAC&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8981;&#x5904;&#x7406;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x548C;&#x76D1;&#x542C;&#x7684;&#x4E8B;&#x60C5;&#x7684;&#x4EE3;&#x7801;&#x653E;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x8FD9;&#x6837;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x6211;&#x4EEC;&#x7BA1;&#x7406;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x8DF3;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x91CC;&#x3002;&#x975E;&#x5E38;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x5F00;&#x53D1;&#x4E2D;&#x9AD8;&#x805A;&#x5408;&#xFF0C;&#x4F4E;&#x8026;&#x5408;&#x7684;&#x601D;&#x60F3;&#x3002;<br>3.&#x7F16;&#x7A0B;&#x601D;&#x60F3;<br>&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x80FD;&#x592A;&#x4F9D;&#x8D56;&#x4E8E;&#x67D0;&#x4E2A;&#x6846;&#x67B6;&#xFF0C;&#x5426;&#x5219;&#x8FD9;&#x4E2A;&#x6846;&#x67B6;&#x4E0D;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x5BFC;&#x81F4;&#x9879;&#x76EE;&#x540E;&#x671F;&#x6CA1;&#x529E;&#x6CD5;&#x7EF4;&#x62A4;&#xFF0C;&#x6BD4;&#x5982;&#x4E4B;&#x524D;Facebook&#x63D0;&#x4F9B;&#x7684;Three20&#x6846;&#x67B6;&#xFF0C;&#x5728;&#x5F53;&#x65F6;&#x4E5F;&#x662F;&#x795E;&#x5668;&#xFF0C;&#x4F46;&#x662F;&#x540E;&#x6765;&#x4E0D;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x4EBA;&#x7528;&#x4E86;&#x3002;&#x56E0;&#x6B64;&#x6211;&#x611F;&#x89C9;&#x5B66;&#x4E60;&#x4E00;&#x4E2A;&#x6846;&#x67B6;&#xFF0C;&#x8FD8;&#x662F;&#x6709;&#x5FC5;&#x8981;&#x4E86;&#x89E3;&#x5B83;&#x7684;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#x3002;</p>
+<p>&#x5148;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E0B;&#x76EE;&#x524D;&#x54B1;&#x4EEC;&#x5DF2;&#x77E5;&#x7684;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#x3002;</p>
+<p>3.1 &#x9762;&#x5411;&#x8FC7;&#x7A0B;&#xFF1A;&#x5904;&#x7406;&#x4E8B;&#x60C5;&#x4EE5;&#x8FC7;&#x7A0B;&#x4E3A;&#x6838;&#x5FC3;&#xFF0C;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>3.2 &#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF1A;&#x4E07;&#x7269;&#x7686;&#x5BF9;&#x8C61;</p>
+<p>3.3 &#x94FE;&#x5F0F;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#xFF1A;&#x662F;&#x5C06;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#xFF08;&#x591A;&#x884C;&#x4EE3;&#x7801;&#xFF09;&#x901A;&#x8FC7;&#x70B9;&#x53F7;(.)&#x94FE;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x6210;&#x4E3A;&#x4E00;&#x53E5;&#x4EE3;&#x7801;,&#x4F7F;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x597D;&#x3002;a(1).b(2).c(3)</p>
+<p>&#x94FE;&#x5F0F;&#x7F16;&#x7A0B;&#x7279;&#x70B9;&#xFF1A;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;block,block&#x5FC5;&#x987B;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#xFF08;&#x672C;&#x8EAB;&#x5BF9;&#x8C61;&#xFF09;&#xFF0C;block&#x53C2;&#x6570;&#xFF08;&#x9700;&#x8981;&#x64CD;&#x4F5C;&#x7684;&#x503C;&#xFF09;</p>
+<p>&#x4EE3;&#x8868;&#xFF1A;masonry&#x6846;&#x67B6;&#x3002;</p>
+<p>&#x6A21;&#x4EFF;masonry&#xFF0C;&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x8BA1;&#x7B97;&#x5668;&#xFF0C;&#x7EC3;&#x4E60;&#x94FE;&#x5F0F;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#x3002;</p>
+<p>(1.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/1.png]</p>
+<p>(2.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/2.png]</p>
+<p>(3.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/3.png]<br><a id="more"></a><br>(4.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/4.png]</p>
+<p>(5.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/5.png]</p>
+<p>3.4 &#x54CD;&#x5E94;&#x5F0F;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#xFF1A;&#x4E0D;&#x9700;&#x8981;&#x8003;&#x8651;&#x8C03;&#x7528;&#x987A;&#x5E8F;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x8003;&#x8651;&#x7ED3;&#x679C;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x8774;&#x8776;&#x6548;&#x5E94;&#xFF0C;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x5F88;&#x591A;&#x4E1C;&#x897F;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x50CF;&#x6D41;&#x4E00;&#x6837;&#x7684;&#x4F20;&#x64AD;&#x51FA;&#x53BB;&#xFF0C;&#x7136;&#x540E;&#x5F71;&#x54CD;&#x7ED3;&#x679C;&#xFF0C;&#x501F;&#x7528;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x53E5;&#x8BDD;&#xFF0C;&#x4E07;&#x7269;&#x7686;&#x662F;&#x6D41;&#x3002;</p>
+<p>&#x4EE3;&#x8868;&#xFF1A;KVO&#x8FD0;&#x7528;&#x3002;<br>3.5 &#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#xFF1A;&#x662F;&#x628A;&#x64CD;&#x4F5C;&#x5C3D;&#x91CF;&#x5199;&#x6210;&#x4E00;&#x7CFB;&#x5217;&#x5D4C;&#x5957;&#x7684;&#x51FD;&#x6570;&#x6216;&#x8005;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7279;&#x70B9;&#xFF1A;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#xFF08;&#x672C;&#x8EAB;&#x5BF9;&#x8C61;&#xFF09;,&#x628A;&#x51FD;&#x6570;&#x6216;&#x8005;Block&#x5F53;&#x505A;&#x53C2;&#x6570;,block&#x53C2;&#x6570;&#xFF08;&#x9700;&#x8981;&#x64CD;&#x4F5C;&#x7684;&#x503C;&#xFF09;block&#x8FD4;&#x56DE;&#x503C;&#xFF08;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;&#xFF09;</p>
+<p>&#x4EE3;&#x8868;&#xFF1A;ReactiveCocoa&#x3002;</p>
+<p>&#x7528;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#xFF0C;&#x5199;&#x4E00;&#x4E2A;&#x52A0;&#x6CD5;&#x8BA1;&#x7B97;&#x5668;,&#x5E76;&#x4E14;&#x52A0;&#x6CD5;&#x8BA1;&#x7B97;&#x5668;&#x81EA;&#x5E26;&#x5224;&#x65AD;&#x662F;&#x5426;&#x7B49;&#x4E8E;&#x67D0;&#x4E2A;&#x503C;.</p>
+<p>(6.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/6.png]</p>
+<p>(7.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/7.png]<br>4.ReactiveCocoa&#x7F16;&#x7A0B;&#x601D;&#x60F3;<br>ReactiveCocoa&#x7ED3;&#x5408;&#x4E86;&#x51E0;&#x79CD;&#x7F16;&#x7A0B;&#x98CE;&#x683C;&#xFF1A;</p>
+<p>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#xFF08;Functional Programming&#xFF09;</p>
+<p>&#x54CD;&#x5E94;&#x5F0F;&#x7F16;&#x7A0B;&#xFF08;Reactive Programming&#xFF09;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x542C;&#x8BF4;&#x8FC7;ReactiveCocoa&#x88AB;&#x63CF;&#x8FF0;&#x4E3A;&#x51FD;&#x6570;&#x54CD;&#x5E94;&#x5F0F;&#x7F16;&#x7A0B;&#xFF08;FRP&#xFF09;&#x6846;&#x67B6;&#x3002;</p>
+<p>&#x4EE5;&#x540E;&#x4F7F;&#x7528;RAC&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x8003;&#x8651;&#x8C03;&#x7528;&#x987A;&#x5E8F;&#xFF0C;&#x76F4;&#x63A5;&#x8003;&#x8651;&#x7ED3;&#x679C;&#xFF0C;&#x628A;&#x6BCF;&#x4E00;&#x6B21;&#x64CD;&#x4F5C;&#x90FD;&#x5199;&#x6210;&#x4E00;&#x7CFB;&#x5217;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x4F7F;&#x4EE3;&#x7801;&#x9AD8;&#x805A;&#x5408;&#xFF0C;&#x65B9;&#x4FBF;&#x7BA1;&#x7406;&#x3002;</p>
+<p>5.&#x5982;&#x4F55;&#x5BFC;&#x5165;ReactiveCocoa&#x6846;&#x67B6;<br>&#x901A;&#x5E38;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;CocoaPods&#xFF08;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x7B2C;&#x4E09;&#x65B9;&#x6846;&#x67B6;&#x7684;&#x63D2;&#x4EF6;&#xFF09;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5BFC;&#x5165;&#x3002;</p>
+<p>PS:CocoaPods&#x6559;&#x7A0B;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<p>podfile&#x5982;&#x679C;&#x53EA;&#x63CF;&#x8FF0;pod &#x2018;ReactiveCocoa&#x2019;, &#x2018;~&gt; 4.0.2-alpha-1&#x2019;&#xFF0C;&#x4F1A;&#x5BFC;&#x5165;&#x4E0D;&#x6210;&#x529F;&#x3002;</p>
+<p>(8.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/8.png]<br>&#x62A5;&#x9519;&#x63D0;&#x793A;&#x4FE1;&#x606F;</p>
+<p>(9.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/9.png]<br>&#x9700;&#x8981;&#x5728;podfile&#x52A0;&#x4E0A;use_frameworks&#xFF0C;&#x91CD;&#x65B0;pod install &#x624D;&#x80FD;&#x5BFC;&#x5165;&#x6210;&#x529F;&#x3002;</p>
+<p>(10.png)[&#x5FEB;&#x901F;&#x4E0A;&#x624B;ReactiveCocoa-&#x57FA;&#x7840;&#x7BC7;/10.png]<br>6.ReactiveCocoa&#x5E38;&#x89C1;&#x7C7B;&#x3002;<br>&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x9996;&#x8981;&#x4E4B;&#x5904;:&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;&#x5148;&#x8981;&#x641E;&#x6E05;&#x695A;&#x6846;&#x67B6;&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x7C7B;&#xFF0C;&#x5728;RAC&#x4E2D;&#x6700;&#x6838;&#x5FC3;&#x7684;&#x7C7B;RACSiganl,&#x641E;&#x5B9A;&#x8FD9;&#x4E2A;&#x7C7B;&#x5C31;&#x80FD;&#x7528;ReactiveCocoa&#x5F00;&#x53D1;&#x4E86;&#x3002;</p>
+<p>6.1RACSiganl:&#x4FE1;&#x53F7;&#x7C7B;,&#x4E00;&#x822C;&#x8868;&#x793A;&#x5C06;&#x6765;&#x6709;&#x6570;&#x636E;&#x4F20;&#x9012;&#xFF0C;&#x53EA;&#x8981;&#x6709;&#x6570;&#x636E;&#x6539;&#x53D8;&#xFF0C;&#x4FE1;&#x53F7;&#x5185;&#x90E8;&#x63A5;&#x6536;&#x5230;&#x6570;&#x636E;&#xFF0C;&#x5C31;&#x4F1A;&#x9A6C;&#x4E0A;&#x53D1;&#x51FA;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<p>&#x4FE1;&#x53F7;&#x7C7B;(RACSiganl)&#xFF0C;&#x53EA;&#x662F;&#x8868;&#x793A;&#x5F53;&#x6570;&#x636E;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x4FE1;&#x53F7;&#x5185;&#x90E8;&#x4F1A;&#x53D1;&#x51FA;&#x6570;&#x636E;&#xFF0C;&#x5B83;&#x672C;&#x8EAB;&#x4E0D;&#x5177;&#x5907;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x800C;&#x662F;&#x4EA4;&#x7ED9;&#x5185;&#x90E8;&#x4E00;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#x53BB;&#x53D1;&#x51FA;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#x90FD;&#x662F;&#x51B7;&#x4FE1;&#x53F7;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x503C;&#x6539;&#x53D8;&#x4E86;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#xFF0C;&#x53EA;&#x6709;&#x8BA2;&#x9605;&#x4E86;&#x8FD9;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x8FD9;&#x4E2A;&#x4FE1;&#x53F7;&#x624D;&#x4F1A;&#x53D8;&#x4E3A;&#x70ED;&#x4FE1;&#x53F7;&#xFF0C;&#x503C;&#x6539;&#x53D8;&#x4E86;&#x624D;&#x4F1A;&#x89E6;&#x53D1;&#x3002;</p>
+<p>&#x5982;&#x4F55;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF1A;&#x8C03;&#x7528;&#x4FE1;&#x53F7;RACSignal&#x7684;subscribeNext&#x5C31;&#x80FD;&#x8BA2;&#x9605;&#x3002;</p>
+<p>RACSiganl&#x7B80;&#x5355;&#x4F7F;&#x7528;:</p>
+<pre><code>// RACSignal&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#xFF1A;
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7; + (RACSignal *)createSignal:(RACDisposable * (^)(id&lt;RACSubscriber&gt; subscriber))didSubscribe
+// 2.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;,&#x624D;&#x4F1A;&#x6FC0;&#x6D3B;&#x4FE1;&#x53F7;. - (RACDisposable *)subscribeNext:(void (^)(id x))nextBlock
+// 3.&#x53D1;&#x9001;&#x4FE1;&#x53F7; - (void)sendNext:(id)value
+
+
+// RACSignal&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#xFF1A;
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;&#xFF0C;&#x9996;&#x5148;&#x628A;didSubscribe&#x4FDD;&#x5B58;&#x5230;&#x4FE1;&#x53F7;&#x4E2D;&#xFF0C;&#x8FD8;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x3002;
+// 2.&#x5F53;&#x4FE1;&#x53F7;&#x88AB;&#x8BA2;&#x9605;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8C03;&#x7528;signal&#x7684;subscribeNext:nextBlock
+// 2.2 subscribeNext&#x5185;&#x90E8;&#x4F1A;&#x521B;&#x5EFA;&#x8BA2;&#x9605;&#x8005;subscriber&#xFF0C;&#x5E76;&#x4E14;&#x628A;nextBlock&#x4FDD;&#x5B58;&#x5230;subscriber&#x4E2D;&#x3002;
+// 2.1 subscribeNext&#x5185;&#x90E8;&#x4F1A;&#x8C03;&#x7528;siganl&#x7684;didSubscribe
+// 3.siganl&#x7684;didSubscribe&#x4E2D;&#x8C03;&#x7528;[subscriber sendNext:@1];
+// 3.1 sendNext&#x5E95;&#x5C42;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x6267;&#x884C;subscriber&#x7684;nextBlock
+
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;
+RACSignal *siganl = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) {
+
+    // block&#x8C03;&#x7528;&#x65F6;&#x523B;&#xFF1A;&#x6BCF;&#x5F53;&#x6709;&#x8BA2;&#x9605;&#x8005;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;block&#x3002;
+
+    // 2.&#x53D1;&#x9001;&#x4FE1;&#x53F7;
+    [subscriber sendNext:@1];
+
+    // &#x5982;&#x679C;&#x4E0D;&#x5728;&#x53D1;&#x9001;&#x6570;&#x636E;&#xFF0C;&#x6700;&#x597D;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x5B8C;&#x6210;&#xFF0C;&#x5185;&#x90E8;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x7528;[RACDisposable disposable]&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#x3002;
+    [subscriber sendCompleted];
+
+    return [RACDisposable disposableWithBlock:^{
+
+        // block&#x8C03;&#x7528;&#x65F6;&#x523B;&#xFF1A;&#x5F53;&#x4FE1;&#x53F7;&#x53D1;&#x9001;&#x5B8C;&#x6210;&#x6216;&#x8005;&#x53D1;&#x9001;&#x9519;&#x8BEF;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x8FD9;&#x4E2A;block,&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#x3002;
+
+        // &#x6267;&#x884C;&#x5B8C;Block&#x540E;&#xFF0C;&#x5F53;&#x524D;&#x4FE1;&#x53F7;&#x5C31;&#x4E0D;&#x5728;&#x88AB;&#x8BA2;&#x9605;&#x4E86;&#x3002;
+
+        NSLog(@&quot;&#x4FE1;&#x53F7;&#x88AB;&#x9500;&#x6BC1;&quot;);
+
+    }];
+}];
+
+// 3.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;,&#x624D;&#x4F1A;&#x6FC0;&#x6D3B;&#x4FE1;&#x53F7;.
+[siganl subscribeNext:^(id x) {
+    // block&#x8C03;&#x7528;&#x65F6;&#x523B;&#xFF1A;&#x6BCF;&#x5F53;&#x6709;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x6570;&#x636E;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;block.
+    NSLog(@&quot;&#x63A5;&#x6536;&#x5230;&#x6570;&#x636E;:%@&quot;,x);
+}];
+</code></pre><p>6.2 RACSubscriber:&#x8868;&#x793A;&#x8BA2;&#x9605;&#x8005;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x7528;&#x4E8E;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x534F;&#x8BAE;&#xFF0C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x53EA;&#x8981;&#x9075;&#x5B88;&#x8FD9;&#x4E2A;&#x534F;&#x8BAE;&#xFF0C;&#x5E76;&#x4E14;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x624D;&#x80FD;&#x6210;&#x4E3A;&#x8BA2;&#x9605;&#x8005;&#x3002;&#x901A;&#x8FC7;create&#x521B;&#x5EFA;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x5E2E;&#x52A9;&#x4ED6;&#x53D1;&#x9001;&#x6570;&#x636E;&#x3002;</p>
+<p>6.3 RACDisposable:&#x7528;&#x4E8E;&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x6216;&#x8005;&#x6E05;&#x7406;&#x8D44;&#x6E90;&#xFF0C;&#x5F53;&#x4FE1;&#x53F7;&#x53D1;&#x9001;&#x5B8C;&#x6210;&#x6216;&#x8005;&#x53D1;&#x9001;&#x9519;&#x8BEF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x5B83;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x573A;&#x666F;:&#x4E0D;&#x60F3;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x4FE1;&#x53F7;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B83;&#x4E3B;&#x52A8;&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#x3002;<br>6.4 RACSubject:RACSubject:&#x4FE1;&#x53F7;&#x63D0;&#x4F9B;&#x8005;&#xFF0C;&#x81EA;&#x5DF1;&#x53EF;&#x4EE5;&#x5145;&#x5F53;&#x4FE1;&#x53F7;&#xFF0C;&#x53C8;&#x80FD;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x573A;&#x666F;:&#x901A;&#x5E38;&#x7528;&#x6765;&#x4EE3;&#x66FF;&#x4EE3;&#x7406;&#xFF0C;&#x6709;&#x4E86;&#x5B83;&#xFF0C;&#x5C31;&#x4E0D;&#x5FC5;&#x8981;&#x5B9A;&#x4E49;&#x4EE3;&#x7406;&#x4E86;&#x3002;<br>RACReplaySubject:&#x91CD;&#x590D;&#x63D0;&#x4F9B;&#x4FE1;&#x53F7;&#x7C7B;&#xFF0C;RACSubject&#x7684;&#x5B50;&#x7C7B;&#x3002;</p>
+<p>RACReplaySubject&#x4E0E;RACSubject&#x533A;&#x522B;:<br>RACReplaySubject&#x53EF;&#x4EE5;&#x5148;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x5728;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;RACSubject&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;&#x3002;<br>&#x4F7F;&#x7528;&#x573A;&#x666F;&#x4E00;:&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#x6BCF;&#x88AB;&#x8BA2;&#x9605;&#x4E00;&#x6B21;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x628A;&#x4E4B;&#x524D;&#x7684;&#x503C;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x4E00;&#x904D;&#xFF0C;&#x4F7F;&#x7528;&#x91CD;&#x590D;&#x63D0;&#x4F9B;&#x4FE1;&#x53F7;&#x7C7B;&#x3002;<br>&#x4F7F;&#x7528;&#x573A;&#x666F;&#x4E8C;:&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;capacity&#x6570;&#x91CF;&#x6765;&#x9650;&#x5236;&#x7F13;&#x5B58;&#x7684;value&#x7684;&#x6570;&#x91CF;,&#x5373;&#x53EA;&#x7F13;&#x5145;&#x6700;&#x65B0;&#x7684;&#x51E0;&#x4E2A;&#x503C;&#x3002;</p>
+<p>RACSubject&#x548C;RACReplaySubject&#x7B80;&#x5355;&#x4F7F;&#x7528;:</p>
+<pre><code>// RACSubject&#x4F7F;&#x7528;&#x6B65;&#x9AA4;
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7; [RACSubject subject]&#xFF0C;&#x8DDF;RACSiganl&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x521B;&#x5EFA;&#x4FE1;&#x53F7;&#x65F6;&#x6CA1;&#x6709;block&#x3002;
+// 2.&#x8BA2;&#x9605;&#x4FE1;&#x53F7; - (RACDisposable *)subscribeNext:(void (^)(id x))nextBlock
+// 3.&#x53D1;&#x9001;&#x4FE1;&#x53F7; sendNext:(id)value
+
+// RACSubject:&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x548C;RACSignal&#x4E0D;&#x4E00;&#x6837;&#x3002;
+// 1.&#x8C03;&#x7528;subscribeNext&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x53EA;&#x662F;&#x628A;&#x8BA2;&#x9605;&#x8005;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x4E14;&#x8BA2;&#x9605;&#x8005;&#x7684;nextBlock&#x5DF2;&#x7ECF;&#x8D4B;&#x503C;&#x4E86;&#x3002;
+// 2.&#x8C03;&#x7528;sendNext&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x904D;&#x5386;&#x521A;&#x521A;&#x4FDD;&#x5B58;&#x7684;&#x6240;&#x6709;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x8C03;&#x7528;&#x8BA2;&#x9605;&#x8005;&#x7684;nextBlock&#x3002;
+
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;
+RACSubject *subject = [RACSubject subject];
+
+// 2.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;
+[subject subscribeNext:^(id x) {
+    // block&#x8C03;&#x7528;&#x65F6;&#x523B;&#xFF1A;&#x5F53;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x65B0;&#x503C;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;.
+    NSLog(@&quot;&#x7B2C;&#x4E00;&#x4E2A;&#x8BA2;&#x9605;&#x8005;%@&quot;,x);
+}];
+[subject subscribeNext:^(id x) {
+    // block&#x8C03;&#x7528;&#x65F6;&#x523B;&#xFF1A;&#x5F53;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x65B0;&#x503C;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;.
+    NSLog(@&quot;&#x7B2C;&#x4E8C;&#x4E2A;&#x8BA2;&#x9605;&#x8005;%@&quot;,x);
+}];
+
+// 3.&#x53D1;&#x9001;&#x4FE1;&#x53F7;
+[subject sendNext:@&quot;1&quot;];
+
+
+// RACReplaySubject&#x4F7F;&#x7528;&#x6B65;&#x9AA4;:
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7; [RACSubject subject]&#xFF0C;&#x8DDF;RACSiganl&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x521B;&#x5EFA;&#x4FE1;&#x53F7;&#x65F6;&#x6CA1;&#x6709;block&#x3002;
+// 2.&#x53EF;&#x4EE5;&#x5148;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5148;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;
+// 2.1 &#x8BA2;&#x9605;&#x4FE1;&#x53F7; - (RACDisposable *)subscribeNext:(void (^)(id x))nextBlock
+// 2.2 &#x53D1;&#x9001;&#x4FE1;&#x53F7; sendNext:(id)value
+
+// RACReplaySubject:&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x548C;RACSubject&#x4E0D;&#x4E00;&#x6837;&#x3002;
+// 1.&#x8C03;&#x7528;sendNext&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x628A;&#x503C;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x904D;&#x5386;&#x521A;&#x521A;&#x4FDD;&#x5B58;&#x7684;&#x6240;&#x6709;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x8C03;&#x7528;&#x8BA2;&#x9605;&#x8005;&#x7684;nextBlock&#x3002;
+// 2.&#x8C03;&#x7528;subscribeNext&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x904D;&#x5386;&#x4FDD;&#x5B58;&#x7684;&#x6240;&#x6709;&#x503C;&#xFF0C;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x8C03;&#x7528;&#x8BA2;&#x9605;&#x8005;&#x7684;nextBlock
+
+// &#x5982;&#x679C;&#x60F3;&#x5F53;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#x88AB;&#x8BA2;&#x9605;&#xFF0C;&#x5C31;&#x91CD;&#x590D;&#x64AD;&#x653E;&#x4E4B;&#x524D;&#x6240;&#x6709;&#x503C;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x5728;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#x3002;
+// &#x4E5F;&#x5C31;&#x662F;&#x5148;&#x4FDD;&#x5B58;&#x503C;&#xFF0C;&#x5728;&#x8BA2;&#x9605;&#x503C;&#x3002;
+
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;
+RACReplaySubject *replaySubject = [RACReplaySubject subject];
+
+// 2.&#x53D1;&#x9001;&#x4FE1;&#x53F7;
+[replaySubject sendNext:@1];
+[replaySubject sendNext:@2];
+
+// 3.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;
+[replaySubject subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x7B2C;&#x4E00;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#x63A5;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;%@&quot;,x);
+}];
+
+// &#x8BA2;&#x9605;&#x4FE1;&#x53F7;
+[replaySubject subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x7B2C;&#x4E8C;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#x63A5;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;%@&quot;,x);
+}];
+</code></pre><p>RACSubject&#x66FF;&#x6362;&#x4EE3;&#x7406;<br>    // &#x9700;&#x6C42;:<br>    // 1.&#x7ED9;&#x5F53;&#x524D;&#x63A7;&#x5236;&#x5668;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;modal&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x754C;&#x9762;<br>    // 2.&#x53E6;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;view&#x4E2D;&#x6709;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x901A;&#x77E5;&#x5F53;&#x524D;&#x63A7;&#x5236;&#x5668;</p>
+<p>&#x6B65;&#x9AA4;&#x4E00;&#xFF1A;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;&#x63A7;&#x5236;&#x5668;.h&#xFF0C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;RACSubject&#x4EE3;&#x66FF;&#x4EE3;&#x7406;&#x3002;<br>@interface TwoViewController : UIViewController</p>
+<p>@property (nonatomic, strong) RACSubject *delegateSignal;</p>
+<p>@end</p>
+<p>&#x6B65;&#x9AA4;&#x4E8C;&#xFF1A;&#x76D1;&#x542C;&#x7B2C;&#x4E8C;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x6309;&#x94AE;&#x70B9;&#x51FB;<br>@implementation TwoViewController</p>
+<ul>
+<li><p>(IBAction)notice:(id)sender {<br>  // &#x901A;&#x77E5;&#x7B2C;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x544A;&#x8BC9;&#x5B83;&#xFF0C;&#x6309;&#x94AE;&#x88AB;&#x70B9;&#x4E86;</p>
+<p>   // &#x901A;&#x77E5;&#x4EE3;&#x7406;<br>   // &#x5224;&#x65AD;&#x4EE3;&#x7406;&#x4FE1;&#x53F7;&#x662F;&#x5426;&#x6709;&#x503C;<br>  if (self.delegateSignal) {</p>
+<pre><code>// &#x6709;&#x503C;&#xFF0C;&#x624D;&#x9700;&#x8981;&#x901A;&#x77E5;
+[self.delegateSignal sendNext:nil];
+</code></pre><p>  }<br>}<br>@end</p>
+</li>
+</ul>
+<p>&#x6B65;&#x9AA4;&#x4E09;&#xFF1A;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#xFF0C;&#x76D1;&#x542C;&#x8DF3;&#x8F6C;&#x6309;&#x94AE;&#xFF0C;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x7684;&#x4EE3;&#x7406;&#x4FE1;&#x53F7;&#x8D4B;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x76D1;&#x542C;.<br>@implementation OneViewController </p>
+<ul>
+<li><p>(IBAction)btnClick:(id)sender {</p>
+<p>  // &#x521B;&#x5EFA;&#x7B2C;&#x4E8C;&#x4E2A;&#x63A7;&#x5236;&#x5668;<br>  TwoViewController *twoVc = [[TwoViewController alloc] init];</p>
+<p>  // &#x8BBE;&#x7F6E;&#x4EE3;&#x7406;&#x4FE1;&#x53F7;<br>  twoVc.delegateSignal = [RACSubject subject];</p>
+<p>  // &#x8BA2;&#x9605;&#x4EE3;&#x7406;&#x4FE1;&#x53F7;<br>  [twoVc.delegateSignal subscribeNext:^(id x) {</p>
+<pre><code>NSLog(@&quot;&#x70B9;&#x51FB;&#x4E86;&#x901A;&#x77E5;&#x6309;&#x94AE;&quot;);
+</code></pre><p>  }];</p>
+<p>  // &#x8DF3;&#x8F6C;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x63A7;&#x5236;&#x5668;<br>  [self presentViewController:twoVc animated:YES completion:nil];</p>
+</li>
+</ul>
+<p>}<br>@end<br>6.6RACTuple:&#x5143;&#x7EC4;&#x7C7B;,&#x7C7B;&#x4F3C;NSArray,&#x7528;&#x6765;&#x5305;&#x88C5;&#x503C;.</p>
+<p>6.7RACSequence:RAC&#x4E2D;&#x7684;&#x96C6;&#x5408;&#x7C7B;&#xFF0C;&#x7528;&#x4E8E;&#x4EE3;&#x66FF;NSArray,NSDictionary,&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x6765;&#x5FEB;&#x901F;&#x904D;&#x5386;&#x6570;&#x7EC4;&#x548C;&#x5B57;&#x5178;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF1A;1.&#x5B57;&#x5178;&#x8F6C;&#x6A21;&#x578B;</p>
+<p>RACSequence&#x548C;RACTuple&#x7B80;&#x5355;&#x4F7F;&#x7528;</p>
+<pre><code>// 1.&#x904D;&#x5386;&#x6570;&#x7EC4;
+NSArray *numbers = @[@1,@2,@3,@4];
+
+// &#x8FD9;&#x91CC;&#x5176;&#x5B9E;&#x662F;&#x4E09;&#x6B65;
+// &#x7B2C;&#x4E00;&#x6B65;: &#x628A;&#x6570;&#x7EC4;&#x8F6C;&#x6362;&#x6210;&#x96C6;&#x5408;RACSequence numbers.rac_sequence
+// &#x7B2C;&#x4E8C;&#x6B65;: &#x628A;&#x96C6;&#x5408;RACSequence&#x8F6C;&#x6362;RACSignal&#x4FE1;&#x53F7;&#x7C7B;,numbers.rac_sequence.signal
+// &#x7B2C;&#x4E09;&#x6B65;: &#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x6FC0;&#x6D3B;&#x4FE1;&#x53F7;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x628A;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x503C;&#xFF0C;&#x904D;&#x5386;&#x51FA;&#x6765;&#x3002;
+[numbers.rac_sequence.signal subscribeNext:^(id x) {
+
+    NSLog(@&quot;%@&quot;,x);
+}];
+
+
+// 2.&#x904D;&#x5386;&#x5B57;&#x5178;,&#x904D;&#x5386;&#x51FA;&#x6765;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x4F1A;&#x5305;&#x88C5;&#x6210;RACTuple(&#x5143;&#x7EC4;&#x5BF9;&#x8C61;)
+NSDictionary *dict = @{@&quot;name&quot;:@&quot;xmg&quot;,@&quot;age&quot;:@18};
+[dict.rac_sequence.signal subscribeNext:^(RACTuple *x) {
+
+    // &#x89E3;&#x5305;&#x5143;&#x7EC4;&#xFF0C;&#x4F1A;&#x628A;&#x5143;&#x7EC4;&#x7684;&#x503C;&#xFF0C;&#x6309;&#x987A;&#x5E8F;&#x7ED9;&#x53C2;&#x6570;&#x91CC;&#x9762;&#x7684;&#x53D8;&#x91CF;&#x8D4B;&#x503C;
+    RACTupleUnpack(NSString *key,NSString *value) = x;
+
+    // &#x76F8;&#x5F53;&#x4E8E;&#x4EE5;&#x4E0B;&#x5199;&#x6CD5;
+</code></pre><p>//        NSString <em>key = x[0];<br>//        NSString </em>value = x[1];</p>
+<pre><code>    NSLog(@&quot;%@ %@&quot;,key,value);
+
+}];
+
+
+// 3.&#x5B57;&#x5178;&#x8F6C;&#x6A21;&#x578B;
+// 3.1 OC&#x5199;&#x6CD5;
+NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;flags.plist&quot; ofType:nil];
+
+NSArray *dictArr = [NSArray arrayWithContentsOfFile:filePath];
+
+NSMutableArray *items = [NSMutableArray array];
+
+for (NSDictionary *dict in dictArr) {
+    FlagItem *item = [FlagItem flagWithDict:dict];
+    [items addObject:item];
+}
+
+// 3.2 RAC&#x5199;&#x6CD5;
+NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;flags.plist&quot; ofType:nil];
+
+NSArray *dictArr = [NSArray arrayWithContentsOfFile:filePath];
+
+NSMutableArray *flags = [NSMutableArray array];
+
+_flags = flags;
+
+// rac_sequence&#x6CE8;&#x610F;&#x70B9;&#xFF1A;&#x8C03;&#x7528;subscribeNext&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x9A6C;&#x4E0A;&#x6267;&#x884C;nextBlock&#xFF0C;&#x800C;&#x662F;&#x4F1A;&#x7B49;&#x4E00;&#x4F1A;&#x3002;
+[dictArr.rac_sequence.signal subscribeNext:^(id x) {
+    // &#x8FD0;&#x7528;RAC&#x904D;&#x5386;&#x5B57;&#x5178;&#xFF0C;x&#xFF1A;&#x5B57;&#x5178;
+
+    FlagItem *item = [FlagItem flagWithDict:x];
+
+    [flags addObject:item];
+
+}];
+
+NSLog(@&quot;%@&quot;,  NSStringFromCGRect([UIScreen mainScreen].bounds));
+
+
+// 3.3 RAC&#x9AD8;&#x7EA7;&#x5199;&#x6CD5;:
+NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;flags.plist&quot; ofType:nil];
+
+NSArray *dictArr = [NSArray arrayWithContentsOfFile:filePath];
+// map:&#x6620;&#x5C04;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x76EE;&#x7684;&#xFF1A;&#x628A;&#x539F;&#x59CB;&#x503C;value&#x6620;&#x5C04;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x503C;
+// array: &#x628A;&#x96C6;&#x5408;&#x8F6C;&#x6362;&#x6210;&#x6570;&#x7EC4;
+// &#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#xFF1A;&#x5F53;&#x4FE1;&#x53F7;&#x88AB;&#x8BA2;&#x9605;&#xFF0C;&#x4F1A;&#x904D;&#x5386;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x6620;&#x5C04;&#x6210;&#x65B0;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x5B58;&#x5230;&#x65B0;&#x7684;&#x6570;&#x7EC4;&#x91CC;&#x3002;
+NSArray *flags = [[dictArr.rac_sequence map:^id(id value) {
+
+    return [FlagItem flagWithDict:value];
+
+}] array];
+</code></pre><p>6.8RACCommand:RAC&#x4E2D;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#x7684;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x4E8B;&#x4EF6;&#x5982;&#x4F55;&#x5904;&#x7406;,&#x4E8B;&#x4EF6;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5982;&#x4F55;&#x4F20;&#x9012;&#xFF0C;&#x5305;&#x88C5;&#x5230;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E2D;&#xFF0C;&#x4ED6;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x76D1;&#x63A7;&#x4E8B;&#x4EF6;&#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x573A;&#x666F;:&#x76D1;&#x542C;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#xFF0C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</p>
+<p>RACCommand&#x7B80;&#x5355;&#x4F7F;&#x7528;</p>
+<pre><code> // &#x4E00;&#x3001;RACCommand&#x4F7F;&#x7528;&#x6B65;&#x9AA4;:
+// 1.&#x521B;&#x5EFA;&#x547D;&#x4EE4; initWithSignalBlock:(RACSignal * (^)(id input))signalBlock
+// 2.&#x5728;signalBlock&#x4E2D;&#xFF0C;&#x521B;&#x5EFA;RACSignal&#xFF0C;&#x5E76;&#x4E14;&#x4F5C;&#x4E3A;signalBlock&#x7684;&#x8FD4;&#x56DE;&#x503C;
+// 3.&#x6267;&#x884C;&#x547D;&#x4EE4; - (RACSignal *)execute:(id)input
+
+// &#x4E8C;&#x3001;RACCommand&#x4F7F;&#x7528;&#x6CE8;&#x610F;:
+// 1.signalBlock&#x5FC5;&#x987B;&#x8981;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x4E0D;&#x80FD;&#x4F20;nil.
+// 2.&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x8981;&#x4F20;&#x9012;&#x4FE1;&#x53F7;&#xFF0C;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x7A7A;&#x7684;&#x4FE1;&#x53F7;[RACSignal empty];
+// 3.RACCommand&#x4E2D;&#x4FE1;&#x53F7;&#x5982;&#x679C;&#x6570;&#x636E;&#x4F20;&#x9012;&#x5B8C;&#xFF0C;&#x5FC5;&#x987B;&#x8C03;&#x7528;[subscriber sendCompleted]&#xFF0C;&#x8FD9;&#x65F6;&#x547D;&#x4EE4;&#x624D;&#x4F1A;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF0C;&#x5426;&#x5219;&#x6C38;&#x8FDC;&#x5904;&#x4E8E;&#x6267;&#x884C;&#x4E2D;&#x3002;
+// 4.RACCommand&#x9700;&#x8981;&#x88AB;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5426;&#x5219;&#x63A5;&#x6536;&#x4E0D;&#x5230;RACCommand&#x4E2D;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x56E0;&#x6B64;RACCommand&#x4E2D;&#x7684;&#x4FE1;&#x53F7;&#x662F;&#x5EF6;&#x8FDF;&#x53D1;&#x9001;&#x7684;&#x3002;
+
+// &#x4E09;&#x3001;RACCommand&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#xFF1A;&#x5185;&#x90E8;signalBlock&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x8FD9;&#x4E2A;&#x4FE1;&#x53F7;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#x3002;
+// 1.&#x5728;RAC&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x628A;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5C01;&#x88C5;&#x5230;RACCommand&#xFF0C;&#x76F4;&#x63A5;&#x6267;&#x884C;&#x67D0;&#x4E2A;RACCommand&#x5C31;&#x80FD;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x3002;
+// 2.&#x5F53;RACCommand&#x5185;&#x90E8;&#x8BF7;&#x6C42;&#x5230;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x628A;&#x8BF7;&#x6C42;&#x7684;&#x6570;&#x636E;&#x4F20;&#x9012;&#x7ED9;&#x5916;&#x754C;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x901A;&#x8FC7;signalBlock&#x8FD4;&#x56DE;&#x7684;&#x4FE1;&#x53F7;&#x4F20;&#x9012;&#x4E86;&#x3002;
+
+// &#x56DB;&#x3001;&#x5982;&#x4F55;&#x62FF;&#x5230;RACCommand&#x4E2D;&#x8FD4;&#x56DE;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x7684;&#x6570;&#x636E;&#x3002;
+// 1.RACCommand&#x6709;&#x4E2A;&#x6267;&#x884C;&#x4FE1;&#x53F7;&#x6E90;executionSignals&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;signal of signals(&#x4FE1;&#x53F7;&#x7684;&#x4FE1;&#x53F7;),&#x610F;&#x601D;&#x662F;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x7684;&#x6570;&#x636E;&#x662F;&#x4FE1;&#x53F7;&#xFF0C;&#x4E0D;&#x662F;&#x666E;&#x901A;&#x7684;&#x7C7B;&#x578B;&#x3002;
+// 2.&#x8BA2;&#x9605;executionSignals&#x5C31;&#x80FD;&#x62FF;&#x5230;RACCommand&#x4E2D;&#x8FD4;&#x56DE;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x7136;&#x540E;&#x8BA2;&#x9605;signalBlock&#x8FD4;&#x56DE;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x5C31;&#x80FD;&#x83B7;&#x53D6;&#x53D1;&#x51FA;&#x7684;&#x503C;&#x3002;
+
+// &#x4E94;&#x3001;&#x76D1;&#x542C;&#x5F53;&#x524D;&#x547D;&#x4EE4;&#x662F;&#x5426;&#x6B63;&#x5728;&#x6267;&#x884C;executing
+
+// &#x516D;&#x3001;&#x4F7F;&#x7528;&#x573A;&#x666F;,&#x76D1;&#x542C;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#xFF0C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;
+
+
+// 1.&#x521B;&#x5EFA;&#x547D;&#x4EE4;
+RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+
+
+    NSLog(@&quot;&#x6267;&#x884C;&#x547D;&#x4EE4;&quot;);
+
+    // &#x521B;&#x5EFA;&#x7A7A;&#x4FE1;&#x53F7;,&#x5FC5;&#x987B;&#x8FD4;&#x56DE;&#x4FE1;&#x53F7;
+    //        return [RACSignal empty];
+
+    // 2.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;,&#x7528;&#x6765;&#x4F20;&#x9012;&#x6570;&#x636E;
+    return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) {
+
+        [subscriber sendNext:@&quot;&#x8BF7;&#x6C42;&#x6570;&#x636E;&quot;];
+
+        // &#x6CE8;&#x610F;&#xFF1A;&#x6570;&#x636E;&#x4F20;&#x9012;&#x5B8C;&#xFF0C;&#x6700;&#x597D;&#x8C03;&#x7528;sendCompleted&#xFF0C;&#x8FD9;&#x65F6;&#x547D;&#x4EE4;&#x624D;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x3002;
+        [subscriber sendCompleted];
+
+        return nil;
+    }];
+
+}];
+
+// &#x5F3A;&#x5F15;&#x7528;&#x547D;&#x4EE4;&#xFF0C;&#x4E0D;&#x8981;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x5426;&#x5219;&#x63A5;&#x6536;&#x4E0D;&#x5230;&#x6570;&#x636E;
+_conmmand = command;
+
+
+
+// 3.&#x8BA2;&#x9605;RACCommand&#x4E2D;&#x7684;&#x4FE1;&#x53F7;
+[command.executionSignals subscribeNext:^(id x) {
+
+    [x subscribeNext:^(id x) {
+
+        NSLog(@&quot;%@&quot;,x);
+    }];
+
+}];
+
+// RAC&#x9AD8;&#x7EA7;&#x7528;&#x6CD5;
+// switchToLatest:&#x7528;&#x4E8E;signal of signals&#xFF0C;&#x83B7;&#x53D6;signal of signals&#x53D1;&#x51FA;&#x7684;&#x6700;&#x65B0;&#x4FE1;&#x53F7;,&#x4E5F;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x62FF;&#x5230;RACCommand&#x4E2D;&#x7684;&#x4FE1;&#x53F7;
+[command.executionSignals.switchToLatest subscribeNext:^(id x) {
+
+    NSLog(@&quot;%@&quot;,x);
+}];
+
+// 4.&#x76D1;&#x542C;&#x547D;&#x4EE4;&#x662F;&#x5426;&#x6267;&#x884C;&#x5B8C;&#x6BD5;,&#x9ED8;&#x8BA4;&#x4F1A;&#x6765;&#x4E00;&#x6B21;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;&#xFF0C;skip&#x8868;&#x793A;&#x8DF3;&#x8FC7;&#x7B2C;&#x4E00;&#x6B21;&#x4FE1;&#x53F7;&#x3002;
+[[command.executing skip:1] subscribeNext:^(id x) {
+
+    if ([x boolValue] == YES) {
+        // &#x6B63;&#x5728;&#x6267;&#x884C;
+        NSLog(@&quot;&#x6B63;&#x5728;&#x6267;&#x884C;&quot;);
+
+    }else{
+        // &#x6267;&#x884C;&#x5B8C;&#x6210;
+        NSLog(@&quot;&#x6267;&#x884C;&#x5B8C;&#x6210;&quot;);
+    }
+
+}];
+</code></pre><p>   // 5.&#x6267;&#x884C;&#x547D;&#x4EE4;<br>    [self.conmmand execute:@1];<br>6.9RACMulticastConnection:&#x7528;&#x4E8E;&#x5F53;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x88AB;&#x591A;&#x6B21;&#x8BA2;&#x9605;&#x65F6;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x521B;&#x5EFA;&#x4FE1;&#x53F7;&#x65F6;&#xFF0C;&#x907F;&#x514D;&#x591A;&#x6B21;&#x8C03;&#x7528;&#x521B;&#x5EFA;&#x4FE1;&#x53F7;&#x4E2D;&#x7684;block&#xFF0C;&#x9020;&#x6210;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x7C7B;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x6CE8;&#x610F;:RACMulticastConnection&#x901A;&#x8FC7;RACSignal&#x7684;-publish&#x6216;&#x8005;-muticast:&#x65B9;&#x6CD5;&#x521B;&#x5EFA;.</p>
+<p>RACMulticastConnection&#x7B80;&#x5355;&#x4F7F;&#x7528;:</p>
+<pre><code>// RACMulticastConnection&#x4F7F;&#x7528;&#x6B65;&#x9AA4;:
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7; + (RACSignal *)createSignal:(RACDisposable * (^)(id&lt;RACSubscriber&gt; subscriber))didSubscribe
+// 2.&#x521B;&#x5EFA;&#x8FDE;&#x63A5; RACMulticastConnection *connect = [signal publish];
+// 3.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;,&#x6CE8;&#x610F;&#xFF1A;&#x8BA2;&#x9605;&#x7684;&#x4E0D;&#x5728;&#x662F;&#x4E4B;&#x524D;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x8FDE;&#x63A5;&#x7684;&#x4FE1;&#x53F7;&#x3002; [connect.signal subscribeNext:nextBlock]
+// 4.&#x8FDE;&#x63A5; [connect connect]
+
+// RACMulticastConnection&#x5E95;&#x5C42;&#x539F;&#x7406;:
+// 1.&#x521B;&#x5EFA;connect&#xFF0C;connect.sourceSignal -&gt; RACSignal(&#x539F;&#x59CB;&#x4FE1;&#x53F7;)  connect.signal -&gt; RACSubject
+// 2.&#x8BA2;&#x9605;connect.signal&#xFF0C;&#x4F1A;&#x8C03;&#x7528;RACSubject&#x7684;subscribeNext&#xFF0C;&#x521B;&#x5EFA;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x800C;&#x4E14;&#x628A;&#x8BA2;&#x9605;&#x8005;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x4E0D;&#x4F1A;&#x6267;&#x884C;block&#x3002;
+// 3.[connect connect]&#x5185;&#x90E8;&#x4F1A;&#x8BA2;&#x9605;RACSignal(&#x539F;&#x59CB;&#x4FE1;&#x53F7;)&#xFF0C;&#x5E76;&#x4E14;&#x8BA2;&#x9605;&#x8005;&#x662F;RACSubject
+// 3.1.&#x8BA2;&#x9605;&#x539F;&#x59CB;&#x4FE1;&#x53F7;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;&#x539F;&#x59CB;&#x4FE1;&#x53F7;&#x4E2D;&#x7684;didSubscribe
+// 3.2 didSubscribe&#xFF0C;&#x62FF;&#x5230;&#x8BA2;&#x9605;&#x8005;&#x8C03;&#x7528;sendNext&#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x8C03;&#x7528;RACSubject&#x7684;sendNext
+// 4.RACSubject&#x7684;sendNext,&#x4F1A;&#x904D;&#x5386;RACSubject&#x6240;&#x6709;&#x8BA2;&#x9605;&#x8005;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;
+// 4.1 &#x56E0;&#x4E3A;&#x521A;&#x521A;&#x7B2C;&#x4E8C;&#x6B65;&#xFF0C;&#x90FD;&#x662F;&#x5728;&#x8BA2;&#x9605;RACSubject&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x62FF;&#x5230;&#x7B2C;&#x4E8C;&#x6B65;&#x6240;&#x6709;&#x7684;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x8C03;&#x7528;&#x4ED6;&#x4EEC;&#x7684;nextBlock
+
+
+// &#x9700;&#x6C42;&#xFF1A;&#x5047;&#x8BBE;&#x5728;&#x4E00;&#x4E2A;&#x4FE1;&#x53F7;&#x4E2D;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x6BCF;&#x6B21;&#x8BA2;&#x9605;&#x4E00;&#x6B21;&#x90FD;&#x4F1A;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x591A;&#x6B21;&#x8BF7;&#x6C42;&#x3002;
+// &#x89E3;&#x51B3;&#xFF1A;&#x4F7F;&#x7528;RACMulticastConnection&#x5C31;&#x80FD;&#x89E3;&#x51B3;.
+
+// 1.&#x521B;&#x5EFA;&#x8BF7;&#x6C42;&#x4FE1;&#x53F7;
+</code></pre><p>   RACSignal <em>signal = [RACSignal createSignal:^RACDisposable </em>(id<racsubscriber> subscriber) {</racsubscriber></p>
+<pre><code>    NSLog(@&quot;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&quot;);
+
+    return nil;
+}];
+// 2.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;
+[signal subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x63A5;&#x6536;&#x6570;&#x636E;&quot;);
+
+}];
+// 2.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;
+[signal subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x63A5;&#x6536;&#x6570;&#x636E;&quot;);
+
+}];
+
+// 3.&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x4E24;&#x904D;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x8BA2;&#x9605;&#x90FD;&#x4F1A;&#x53D1;&#x9001;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;
+
+
+// RACMulticastConnection:&#x89E3;&#x51B3;&#x91CD;&#x590D;&#x8BF7;&#x6C42;&#x95EE;&#x9898;
+// 1.&#x521B;&#x5EFA;&#x4FE1;&#x53F7;
+RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) {
+
+
+    NSLog(@&quot;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&quot;);
+    [subscriber sendNext:@1];
+
+    return nil;
+}];
+
+// 2.&#x521B;&#x5EFA;&#x8FDE;&#x63A5;
+RACMulticastConnection *connect = [signal publish];
+
+// 3.&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;
+// &#x6CE8;&#x610F;&#xFF1A;&#x8BA2;&#x9605;&#x4FE1;&#x53F7;&#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x6FC0;&#x6D3B;&#x4FE1;&#x53F7;&#xFF0C;&#x53EA;&#x662F;&#x4FDD;&#x5B58;&#x8BA2;&#x9605;&#x8005;&#x5230;&#x6570;&#x7EC4;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x8FDE;&#x63A5;,&#x5F53;&#x8C03;&#x7528;&#x8FDE;&#x63A5;&#xFF0C;&#x5C31;&#x4F1A;&#x4E00;&#x6B21;&#x6027;&#x8C03;&#x7528;&#x6240;&#x6709;&#x8BA2;&#x9605;&#x8005;&#x7684;sendNext:
+[connect.signal subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x8BA2;&#x9605;&#x8005;&#x4E00;&#x4FE1;&#x53F7;&quot;);
+
+}];
+
+[connect.signal subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x8BA2;&#x9605;&#x8005;&#x4E8C;&#x4FE1;&#x53F7;&quot;);
+
+}];
+
+// 4.&#x8FDE;&#x63A5;,&#x6FC0;&#x6D3B;&#x4FE1;&#x53F7;
+[connect connect];
+</code></pre><p>6.10 RACScheduler:RAC&#x4E2D;&#x7684;&#x961F;&#x5217;&#xFF0C;&#x7528;GCD&#x5C01;&#x88C5;&#x7684;&#x3002;</p>
+<p>6.11 RACUnit :&#x8868;&#x2F70;stream&#x4E0D;&#x5305;&#x542B;&#x6709;&#x610F;&#x4E49;&#x7684;&#x503C;,&#x4E5F;&#x5C31;&#x662F;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7406;&#x89E3;&#x4E3A;nil.</p>
+<p>6.12 RACEvent: &#x628A;&#x6570;&#x636E;&#x5305;&#x88C5;&#x6210;&#x4FE1;&#x53F7;&#x4E8B;&#x4EF6;(signal event)&#x3002;&#x5B83;&#x4E3B;&#x8981;&#x901A;&#x8FC7;RACSignal&#x7684;-materialize&#x6765;&#x4F7F;&#x7528;&#xFF0C;&#x7136;&#x5E76;&#x5375;&#x3002;</p>
+<p>7.ReactiveCocoa&#x5F00;&#x53D1;&#x4E2D;&#x5E38;&#x89C1;&#x7528;&#x6CD5;&#x3002;<br>7.1 &#x4EE3;&#x66FF;&#x4EE3;&#x7406;:</p>
+<p>rac_signalForSelector&#xFF1A;&#x7528;&#x4E8E;&#x66FF;&#x4EE3;&#x4EE3;&#x7406;&#x3002;<br>7.2 &#x4EE3;&#x66FF;KVO :</p>
+<p>rac_valuesAndChangesForKeyPath&#xFF1A;&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x6539;&#x53D8;&#x3002;<br>7.3 &#x76D1;&#x542C;&#x4E8B;&#x4EF6;:</p>
+<p>rac_signalForControlEvents&#xFF1A;&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x4E8B;&#x4EF6;&#x3002;<br>7.4 &#x4EE3;&#x66FF;&#x901A;&#x77E5;:</p>
+<p>rac_addObserverForName:&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x901A;&#x77E5;&#x3002;<br>7.5 &#x76D1;&#x542C;&#x6587;&#x672C;&#x6846;&#x6587;&#x5B57;&#x6539;&#x53D8;:</p>
+<p>rac_textSignal:&#x53EA;&#x8981;&#x6587;&#x672C;&#x6846;&#x53D1;&#x51FA;&#x6539;&#x53D8;&#x5C31;&#x4F1A;&#x53D1;&#x51FA;&#x8FD9;&#x4E2A;&#x4FE1;&#x53F7;&#x3002;<br>7.6 &#x5904;&#x7406;&#x5F53;&#x754C;&#x9762;&#x6709;&#x591A;&#x6B21;&#x8BF7;&#x6C42;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x90FD;&#x83B7;&#x53D6;&#x5230;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x5C55;&#x793A;&#x754C;&#x9762;</p>
+<p>rac_liftSelector:withSignalsFromArray:Signals:&#x5F53;&#x4F20;&#x5165;&#x7684;Signals(&#x4FE1;&#x53F7;&#x6570;&#x7EC4;)&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;signal&#x90FD;&#x81F3;&#x5C11;sendNext&#x8FC7;&#x4E00;&#x6B21;&#xFF0C;&#x5C31;&#x4F1A;&#x53BB;&#x89E6;&#x53D1;&#x7B2C;&#x4E00;&#x4E2A;selector&#x53C2;&#x6570;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>&#x4F7F;&#x7528;&#x6CE8;&#x610F;&#xFF1A;&#x51E0;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x53C2;&#x6570;&#x4E00;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x51E0;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6BCF;&#x4E2A;&#x53C2;&#x6570;&#x5BF9;&#x5E94;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x7684;&#x6570;&#x636E;&#x3002;<br>7.7 &#x4EE3;&#x7801;&#x6F14;&#x793A;</p>
+<pre><code>  // 1.&#x4EE3;&#x66FF;&#x4EE3;&#x7406;
+// &#x9700;&#x6C42;&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;redView,&#x76D1;&#x542C;&#x7EA2;&#x8272;view&#x4E2D;&#x6309;&#x94AE;&#x70B9;&#x51FB;
+// &#x4E4B;&#x524D;&#x90FD;&#x662F;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x76D1;&#x542C;&#xFF0C;&#x7ED9;&#x7EA2;&#x8272;View&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x5C5E;&#x6027;&#xFF0C;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x901A;&#x77E5;&#x4EE3;&#x7406;&#x505A;&#x4E8B;&#x60C5;
+// rac_signalForSelector:&#x628A;&#x8C03;&#x7528;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x4FE1;&#x606F;&#x8F6C;&#x6362;&#x6210;&#x4FE1;&#x53F7;&#xFF0C;&#x5C31;&#x8981;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;
+// &#x8FD9;&#x91CC;&#x8868;&#x793A;&#x53EA;&#x8981;redV&#x8C03;&#x7528;btnClick:,&#x5C31;&#x4F1A;&#x53D1;&#x51FA;&#x4FE1;&#x53F7;&#xFF0C;&#x8BA2;&#x9605;&#x5C31;&#x597D;&#x4E86;&#x3002;
+[[redV rac_signalForSelector:@selector(btnClick:)] subscribeNext:^(id x) {
+    NSLog(@&quot;&#x70B9;&#x51FB;&#x7EA2;&#x8272;&#x6309;&#x94AE;&quot;);
+}];
+
+// 2.KVO
+// &#x628A;&#x76D1;&#x542C;redV&#x7684;center&#x5C5E;&#x6027;&#x6539;&#x53D8;&#x8F6C;&#x6362;&#x6210;&#x4FE1;&#x53F7;&#xFF0C;&#x53EA;&#x8981;&#x503C;&#x6539;&#x53D8;&#x5C31;&#x4F1A;&#x53D1;&#x9001;&#x4FE1;&#x53F7;
+// observer:&#x53EF;&#x4EE5;&#x4F20;&#x5165;nil
+[[redV rac_valuesAndChangesForKeyPath:@&quot;center&quot; options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(id x) {
+
+    NSLog(@&quot;%@&quot;,x);
+
+}];
+
+// 3.&#x76D1;&#x542C;&#x4E8B;&#x4EF6;
+// &#x628A;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x8F6C;&#x6362;&#x4E3A;&#x4FE1;&#x53F7;&#xFF0C;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x9001;&#x4FE1;&#x53F7;
+[[self.btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+
+    NSLog(@&quot;&#x6309;&#x94AE;&#x88AB;&#x70B9;&#x51FB;&#x4E86;&quot;);
+}];
+
+// 4.&#x4EE3;&#x66FF;&#x901A;&#x77E5;
+// &#x628A;&#x76D1;&#x542C;&#x5230;&#x7684;&#x901A;&#x77E5;&#x8F6C;&#x6362;&#x4FE1;&#x53F7;
+[[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(id x) {
+    NSLog(@&quot;&#x952E;&#x76D8;&#x5F39;&#x51FA;&quot;);
+}];
+
+// 5.&#x76D1;&#x542C;&#x6587;&#x672C;&#x6846;&#x7684;&#x6587;&#x5B57;&#x6539;&#x53D8;
+</code></pre><p>   [_textField.rac_textSignal subscribeNext:^(id x) {</p>
+<pre><code>NSLog(@&quot;&#x6587;&#x5B57;&#x6539;&#x53D8;&#x4E86;%@&quot;,x);
+</code></pre><p>   }];</p>
+<p>   // 6.&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#xFF0C;&#x90FD;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7EDF;&#x4E00;&#x505A;&#x5904;&#x7406;.<br>    RACSignal <em>request1 = [RACSignal createSignal:^RACDisposable </em>(id<racsubscriber> subscriber) {</racsubscriber></p>
+<pre><code>    // &#x53D1;&#x9001;&#x8BF7;&#x6C42;1
+    [subscriber sendNext:@&quot;&#x53D1;&#x9001;&#x8BF7;&#x6C42;1&quot;];
+    return nil;
+}];
+
+RACSignal *request2 = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) {
+    // &#x53D1;&#x9001;&#x8BF7;&#x6C42;2
+    [subscriber sendNext:@&quot;&#x53D1;&#x9001;&#x8BF7;&#x6C42;2&quot;];
+    return nil;
+}];
+
+// &#x4F7F;&#x7528;&#x6CE8;&#x610F;&#xFF1A;&#x51E0;&#x4E2A;&#x4FE1;&#x53F7;&#xFF0C;&#x53C2;&#x6570;&#x4E00;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x51E0;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6BCF;&#x4E2A;&#x53C2;&#x6570;&#x5BF9;&#x5E94;&#x4FE1;&#x53F7;&#x53D1;&#x51FA;&#x7684;&#x6570;&#x636E;&#x3002;
+[self rac_liftSelector:@selector(updateUIWithR1:r2:) withSignalsFromArray:@[request1,request2]];
+</code></pre><p>}<br>// &#x66F4;&#x65B0;UI</p>
+<ul>
+<li><p>(void)updateUIWithR1:(id)data r2:(id)data1<br>{<br>  NSLog(@&#x201D;&#x66F4;&#x65B0;UI%@  %@&#x201D;,data,data1);<br>}<br>8.ReactiveCocoa&#x5E38;&#x89C1;&#x5B8F;&#x3002;<br>8.1 RAC(TARGET, [KEYPATH, [NIL_VALUE]]):&#x7528;&#x4E8E;&#x7ED9;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x67D0;&#x4E2A;&#x5C5E;&#x6027;&#x7ED1;&#x5B9A;&#x3002;</p>
+<p>  // &#x53EA;&#x8981;&#x6587;&#x672C;&#x6846;&#x6587;&#x5B57;&#x6539;&#x53D8;&#xFF0C;&#x5C31;&#x4F1A;&#x4FEE;&#x6539;label&#x7684;&#x6587;&#x5B57;<br>  RAC(self.labelView,text) = _textField.rac_textSignal;<br>8.2 RACObserve(self, name):&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x67D0;&#x4E2A;&#x5C5E;&#x6027;,&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4FE1;&#x53F7;&#x3002;</p>
+</li>
+</ul>
+<p>[RACObserve(self.view, center) subscribeNext:^(id x) {</p>
+<pre><code>    NSLog(@&quot;%@&quot;,x);
+}];
+</code></pre><p>8.3  @weakify(Obj)&#x548C;@strongify(Obj),&#x4E00;&#x822C;&#x4E24;&#x4E2A;&#x90FD;&#x662F;&#x914D;&#x5957;&#x4F7F;&#x7528;,&#x5728;&#x4E3B;&#x5934;&#x6587;&#x4EF6;(ReactiveCocoa.h)&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x5BFC;&#x5165;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x624B;&#x52A8;&#x5BFC;&#x5165;&#xFF0C;RACEXTScope.h&#x624D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x3002;&#x4F46;&#x662F;&#x6BCF;&#x6B21;&#x5BFC;&#x5165;&#x90FD;&#x975E;&#x5E38;&#x9EBB;&#x70E6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x4E3B;&#x5934;&#x6587;&#x4EF6;&#x81EA;&#x5DF1;&#x5BFC;&#x5165;&#x5C31;&#x597D;&#x4E86;&#x3002;</p>
+<p>8.4 RACTuplePack&#xFF1A;&#x628A;&#x6570;&#x636E;&#x5305;&#x88C5;&#x6210;RACTuple&#xFF08;&#x5143;&#x7EC4;&#x7C7B;&#xFF09;</p>
+<p>// &#x628A;&#x53C2;&#x6570;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5305;&#x88C5;&#x6210;&#x5143;&#x7EC4;<br>    RACTuple *tuple = RACTuplePack(@10,@20);<br>8.5 RACTupleUnpack&#xFF1A;&#x628A;RACTuple&#xFF08;&#x5143;&#x7EC4;&#x7C7B;&#xFF09;&#x89E3;&#x5305;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<pre><code>// &#x628A;&#x53C2;&#x6570;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5305;&#x88C5;&#x6210;&#x5143;&#x7EC4;
+RACTuple *tuple = RACTuplePack(@&quot;xmg&quot;,@20);
+
+// &#x89E3;&#x5305;&#x5143;&#x7EC4;&#xFF0C;&#x4F1A;&#x628A;&#x5143;&#x7EC4;&#x7684;&#x503C;&#xFF0C;&#x6309;&#x987A;&#x5E8F;&#x7ED9;&#x53C2;&#x6570;&#x91CC;&#x9762;&#x7684;&#x53D8;&#x91CF;&#x8D4B;&#x503C;
+// name = @&quot;xmg&quot; age = @20
+RACTupleUnpack(NSString *name,NSNumber *age) = tuple;
+</code></pre><p>&#x6587;&#xFF0F;&#x8881;&#x5CE5;Seemygo&#xFF08;&#x7B80;&#x4E66;&#x4F5C;&#x8005;&#xFF09;<br>&#x539F;&#x6587;&#x94FE;&#x63A5;&#xFF1A;<a href="http://www.jianshu.com/p/87ef6720a096" target="_blank" rel="external">http://www.jianshu.com/p/87ef6720a096</a><br>&#x8457;&#x4F5C;&#x6743;&#x5F52;&#x4F5C;&#x8005;&#x6240;&#x6709;&#xFF0C;&#x8F6C;&#x8F7D;&#x8BF7;&#x8054;&#x7CFB;&#x4F5C;&#x8005;&#x83B7;&#x5F97;&#x6388;&#x6743;&#xFF0C;&#x5E76;&#x6807;&#x6CE8;&#x201C;&#x7B80;&#x4E66;&#x4F5C;&#x8005;&#x201D;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢!我会继续努力,谢谢！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.jpg" alt="jasonjwl WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/25/iOS开发之单例/" rel="next" title="iOS开发之单例模式">
+                <i class="fa fa-chevron-left"></i> iOS开发之单例模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/27/caffe-学习笔记/" rel="prev" title="caffe--学习笔记">
+                caffe--学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/05/快速上手ReactiveCocoa-基础篇/"
+           data-title="(转载)快速上手ReactiveCocoa--基础篇" data-url="http://yoursite.com/2016/02/05/快速上手ReactiveCocoa-基础篇/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="jasonjwl" />
+          <p class="site-author-name" itemprop="name">jasonjwl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jingwanli6666/" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/jasonjwl" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jasonjwl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jingwanli6666"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("aWDPh181twRAnmH2BwTG0CsO-gzGzoHsz", "OzHQyrSb2wWrA8gOf7r8dO26");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>
